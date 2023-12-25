@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from 'react'
 
 type FetchState = {
   data: any | null
@@ -11,7 +11,7 @@ export default function useFetch(URL: string): FetchState {
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [error, setError] = useState<Error | null>(null)
 
-  useEffect(() => {
+  const apiCall = useCallback(() => {
     const fetchData = async () => {
       setIsLoading(true)
       setError(null)
@@ -29,6 +29,8 @@ export default function useFetch(URL: string): FetchState {
 
     fetchData()
   }, [URL])
+  
+  useEffect(apiCall, [URL])
 
   return { data, isLoading, error }
 }

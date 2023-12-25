@@ -1,31 +1,32 @@
-import { useDispatch, useSelector } from "react-redux"
-import { removeFromCart } from "../store/cartSlice"
-import { Product } from "../types/type"
+import { useSelector } from 'react-redux'
 
-export type RootState = {
-  cart: Product[]
-}
+import useHandleDispatch from '../hooks/useHandleDispatch'
+import { RootState } from '../store/store'
+import { Product } from '../types/type'
 
 export default function CartPage() {
-  const cartData = useSelector((state: RootState) => state.cart)
-  const dispatch = useDispatch()
+  const cartData = useSelector((state: RootState) => state.cartReducer)
 
-  const handleRemoveFromCart = (product: Product) => {
-    dispatch(removeFromCart(product))
-  }
-  
+  const { handleRemoveFromCart } = useHandleDispatch()
+
   console.log(cartData)
   return (
     <>
       <div>CartPage</div>
-      {cartData?.map((product: Product, i: number) => (
-        <div key={i}>
+      {cartData?.map((product: Product) => (
+        <div key={product.cartItemId}>
           {product.title}
           <br />
           <h3>
             {product.id} : {product.quantity}
           </h3>
-          <button onClick={() => handleRemoveFromCart(product)}>remove</button>
+          <button
+            onClick={() =>
+              product.cartItemId && handleRemoveFromCart(product.cartItemId)
+            }
+          >
+            remove
+          </button>
         </div>
       ))}
     </>
