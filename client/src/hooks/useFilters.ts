@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux'
 
 import SORT_TYPE from '../constants/filterConstants'
-import { RootState } from '../store/store'
+import { RootState } from '../state/store'
 
 export default function useFilter() {
   const stateData = useSelector((state: RootState) => state.filtersReducer)

@@ -1,8 +1,8 @@
 import { useSelector } from 'react-redux'
 
 import useHandleDispatch from '../hooks/useHandleDispatch'
-import { RootState } from '../store/store'
-import { Product } from '../types/type'
+import { RootState } from '../state/store'
+import { Product } from '../types'
 
 export default function CartPage() {
   const cartData = useSelector((state: RootState) => state.cartReducer)

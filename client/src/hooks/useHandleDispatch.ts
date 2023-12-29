@@ -1,7 +1,6 @@
 import { useDispatch } from 'react-redux'
-
-import { removeFromCart } from '../store/cartSlice'
-import { filterRating, sort } from '../store/filtersSlice'
+import { removeFromCart } from '../state/slices/cartSlice'
+import { clearFilters, filterRating, sort } from '../state/slices/filtersSlice'
 
 export default function useHandleDispatch() {
   const dispatch = useDispatch()
@@ -24,5 +23,9 @@ export default function useHandleDispatch() {
     dispatch(removeFromCart(cartItemId))
   }
 
-  return { handleFilterRating, handleSort, handleRemoveFromCart }
+  const handleClearFilter = () => {
+    dispatch(clearFilters())
+  }
+  
+  return { handleFilterRating, handleSort, handleRemoveFromCart, handleClearFilter }
 }

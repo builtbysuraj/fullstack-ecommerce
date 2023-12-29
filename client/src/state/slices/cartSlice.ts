@@ -1,14 +1,14 @@
 import { PayloadAction, createSlice, nanoid } from '@reduxjs/toolkit'
-import { Product } from '../types/type'
+import { Product } from '../../types'
 
-let item = localStorage.getItem('cart')
+const item = localStorage.getItem('cart')
 const initialState = item ? JSON.parse(item) : []
 
 const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    addToCart: (state, action: PayloadAction<Product>) => {
+    addToCart(state, action: PayloadAction<Product>) {
       const itemIndex = state.findIndex(
         (item: Product) => item.id === action.payload.id
       )
@@ -23,7 +23,7 @@ const cartSlice = createSlice({
       }
       localStorage.setItem('cart', JSON.stringify(state))
     },
-    removeFromCart: (state, action: PayloadAction<string>) => {
+    removeFromCart(state, action: PayloadAction<string>) {
       const newState = state.filter(
         (item: Product) => item.cartItemId !== action.payload
       )

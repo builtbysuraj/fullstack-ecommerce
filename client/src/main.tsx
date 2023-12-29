@@ -1,13 +1,15 @@
 import { createRoot } from 'react-dom/client'
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
+
 import App from './App'
-import store from './store/store'
+import './assets/global.css'
+import store from './state/store'
 
 if (process.env.NODE_ENV !== 'development') {
   console.log = () => {}
-  console.error = () => {}
-  console.warn = () => {}
+  // console.error = () => {}
+  // console.warn = () => {}
 }
 
 createRoot(document.querySelector('#root') as HTMLElement).render(
