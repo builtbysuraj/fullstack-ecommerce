@@ -20,7 +20,7 @@ export default function useHandleDispatch() {
     dispatch(priceRange(newValue))
   }
 
-  const handleFilterRating = (filterValue: number) => {
+  const handleFilterRating = (filterValue: string) => {
     dispatch(filterRating(filterValue))
   }
 

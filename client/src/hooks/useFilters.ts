@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux'
 
-import SORT_TYPE from '../constants/filterConstants'
+import { SORT_TYPE } from '../constants/filterConstants'
 import { RootState } from '../state/store'
 
 export default function useFilter() {
@@ -19,7 +19,7 @@ export default function useFilter() {
       )
         return false
 
-      if (stateData.stateRating && !(item.rating >= stateData.stateRating))
+      if (stateData.stateRating && !(item.rating >= Number(stateData.stateRating)))
         // Rating filter
         return false
       // Add more filters as needed

@@ -5,7 +5,7 @@ import { Product } from '../../types'
 type InitialStateType = {
   data: Product[]
   sort: string
-  stateRating: number | null
+  stateRating: string | null
   priceRange: number[]
 }
 
@@ -23,7 +23,7 @@ const filtersSlice = createSlice({
     sort(state, action: PayloadAction<string>) {
       state.sort = action.payload
     },
-    filterRating(state, action: PayloadAction<number>) {
+    filterRating(state, action: PayloadAction<string>) {
       state.stateRating = action.payload
     },
     priceRange(state, action) {
