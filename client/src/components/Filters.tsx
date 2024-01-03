@@ -1,9 +1,19 @@
+import Box from '@mui/material/Box'
+import Slider from '@mui/material/Slider'
+import { useSelector } from 'react-redux'
 import SORT_TYPE from '../constants/filterConstants'
 import useHandleDispatch from '../hooks/useHandleDispatch'
+import { RootState } from '../state/store'
 
 export default function Filters() {
-  const { handleFilterRating, handleSort, handleClearFilter } =
-    useHandleDispatch()
+  const stateData = useSelector((state: RootState) => state.filtersReducer)
+  const {
+    handleFilterRating,
+    handleSort,
+    handlePriceRange,
+    handleClearFilter,
+  } = useHandleDispatch()
+  console.log(stateData)
 
   return (
     <>
@@ -21,6 +31,17 @@ export default function Filters() {
         Rating High To Low
       </button>
       <button onClick={handleClearFilter}>Clear Filters</button>
+      <br />
+      <Box sx={{ width: 200, m: 2 }}>
+        <Slider
+          value={stateData.priceRange}
+          onChange={handlePriceRange}
+          valueLabelDisplay="auto"
+          max={2000}
+          min={10}
+          // step={}
+        />
+      </Box>
     </>
   )
 }

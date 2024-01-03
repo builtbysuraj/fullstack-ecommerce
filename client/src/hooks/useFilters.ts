@@ -10,22 +10,33 @@ export default function useFilter() {
     .filter((item) => {
       // Price filter
       // if (state.price && item.price !== state.price) return false
+      if (
+        stateData.priceRange &&
+        !(
+          item.price >= stateData.priceRange[0] &&
+          item.price <= stateData.priceRange[1]
+        )
+      )
+        return false
 
-      // Rating filter
       if (stateData.stateRating && !(item.rating >= stateData.stateRating))
+        // Rating filter
         return false
       // Add more filters as needed
       return true
     })
     .sort((a, b) => {
-      if (stateData.sort === SORT_TYPE.PRICE_HIGH_TO_LOW)
-        return b.price - a.price
-      if (stateData.sort === SORT_TYPE.PRICE_LOW_TO_HIGH)
-        return a.price - b.price
-      if (stateData.sort === SORT_TYPE.RATING_HIGH_TO_LOW)
-        return b.rating - a.rating
-      // Add more sort as needed
-      return 0
+      switch (stateData.sort) {
+        case SORT_TYPE.PRICE_HIGH_TO_LOW:
+          return b.price - a.price
+        case SORT_TYPE.PRICE_LOW_TO_HIGH:
+          return a.price - b.price
+        case SORT_TYPE.RATING_HIGH_TO_LOW:
+          return b.rating - a.rating
+        // Add more sort as needed
+        default:
+          return 0
+      }
     })
 
   return { filteredData }

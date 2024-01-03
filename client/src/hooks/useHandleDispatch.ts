@@ -1,6 +1,11 @@
 import { useDispatch } from 'react-redux'
 import { removeFromCart } from '../state/slices/cartSlice'
-import { clearFilters, filterRating, sort } from '../state/slices/filtersSlice'
+import {
+  clearFilters,
+  filterRating,
+  priceRange,
+  sort,
+} from '../state/slices/filtersSlice'
 
 export default function useHandleDispatch() {
   const dispatch = useDispatch()
@@ -10,6 +15,10 @@ export default function useHandleDispatch() {
   // const handleRatingClick = (item) => {
   // dispatch()
   // }
+  
+  const handlePriceRange = (event: Event, newValue: number | number[]) => {
+    dispatch(priceRange(newValue))
+  }
 
   const handleFilterRating = (filterValue: number) => {
     dispatch(filterRating(filterValue))
@@ -26,6 +35,12 @@ export default function useHandleDispatch() {
   const handleClearFilter = () => {
     dispatch(clearFilters())
   }
-  
-  return { handleFilterRating, handleSort, handleRemoveFromCart, handleClearFilter }
+
+  return {
+    handleFilterRating,
+    handleSort,
+    handleRemoveFromCart,
+    handlePriceRange,
+    handleClearFilter,
+  }
 }

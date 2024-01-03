@@ -6,16 +6,18 @@ type InitialStateType = {
   data: Product[]
   sort: string
   stateRating: number | null
+  priceRange: number[]
 }
 
-const initialState: InitialStateType = {
+export const initialState: InitialStateType = {
   data: products,
   sort: '',
   stateRating: null,
+  priceRange: [10, 2000],
 }
 
 const filtersSlice = createSlice({
-  name: 'filterSlice',
+  name: 'filters',
   initialState,
   reducers: {
     sort(state, action: PayloadAction<string>) {
@@ -24,12 +26,16 @@ const filtersSlice = createSlice({
     filterRating(state, action: PayloadAction<number>) {
       state.stateRating = action.payload
     },
+    priceRange(state, action) {
+      state.priceRange = action.payload
+    },
     clearFilters() {
       return initialState
     },
   },
 })
 
-export const { filterRating, sort, clearFilters } = filtersSlice.actions
+export const { filterRating, sort, priceRange, clearFilters } =
+  filtersSlice.actions
 
 export default filtersSlice.reducer
