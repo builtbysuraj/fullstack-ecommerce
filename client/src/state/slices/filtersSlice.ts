@@ -5,24 +5,29 @@ import { Product } from '../../types'
 type InitialStateType = {
   data: Product[]
   sort: string
-  stateRating: number | null
+  stateRating: string | null
+  priceRange: number[]
 }
 
-const initialState: InitialStateType = {
+export const initialState: InitialStateType = {
   data: products,
   sort: '',
   stateRating: null,
+  priceRange: [10, 2000],
 }
 
 const filtersSlice = createSlice({
-  name: 'filterSlice',
+  name: 'filters',
   initialState,
   reducers: {
     sort(state, action: PayloadAction<string>) {
       state.sort = action.payload
     },
-    filterRating(state, action: PayloadAction<number>) {
+    filterRating(state, action: PayloadAction<string>) {
       state.stateRating = action.payload
+    },
+    priceRange(state, action) {
+      state.priceRange = action.payload
     },
     clearFilters() {
       return initialState
@@ -30,6 +35,7 @@ const filtersSlice = createSlice({
   },
 })
 
-export const { filterRating, sort, clearFilters } = filtersSlice.actions
+export const { filterRating, sort, priceRange, clearFilters } =
+  filtersSlice.actions
 
 export default filtersSlice.reducer
