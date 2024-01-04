@@ -1,10 +1,8 @@
-import { useSelector } from 'react-redux'
-
 import { SORT_TYPE } from '../constants/filterConstants'
-import { RootState } from '../state/store'
+import { useAppSelector } from '../state/store'
 
 export default function useFilter() {
-  const stateData = useSelector((state: RootState) => state.filtersReducer)
+  const stateData = useAppSelector((state) => state.filtersReducer)
 
   const filteredData = stateData.data
     .filter((item) => {
@@ -19,8 +17,20 @@ export default function useFilter() {
       )
         return false
 
-      if (stateData.stateRating && !(item.rating >= Number(stateData.stateRating)))
-        // Rating filter
+      // Rating filter
+      if (
+        stateData.stateRating &&
+        !(item.rating >= Number(stateData.stateRating))
+      )
+        return false
+
+      // Search filter
+      if (
+        stateData.searchQuery &&
+        !item.title.toLowerCase().includes(stateData.searchQuery) &&
+        !item.category.toLowerCase().includes(stateData.searchQuery) &&
+        !item.brand.toLowerCase().includes(stateData.searchQuery)
+      )
         return false
       // Add more filters as needed
       return true

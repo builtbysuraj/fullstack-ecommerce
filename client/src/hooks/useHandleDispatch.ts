@@ -1,21 +1,22 @@
-import { useDispatch } from 'react-redux'
 import { removeFromCart } from '../state/slices/cartSlice'
 import {
   clearFilters,
   filterRating,
+  filterSearch,
   priceRange,
   sort,
 } from '../state/slices/filtersSlice'
+import { useAppDispatch } from '../state/store'
 
 export default function useHandleDispatch() {
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   // const handlePriceClick = (item) => {
   //   dispatch({ type: 'SORT_BY_PRICE_HIGH_TO_LOW', payload: item.target.value })
   // }
   // const handleRatingClick = (item) => {
   // dispatch()
   // }
-  
+
   const handlePriceRange = (event: Event, newValue: number | number[]) => {
     dispatch(priceRange(newValue))
   }
@@ -26,6 +27,10 @@ export default function useHandleDispatch() {
 
   const handleSort = (sortType: string) => {
     dispatch(sort(sortType))
+  }
+
+  const handleSearchQuery = (query: string) => {
+    dispatch(filterSearch(query))
   }
 
   const handleRemoveFromCart = (cartItemId: string) => {
@@ -41,6 +46,7 @@ export default function useHandleDispatch() {
     handleSort,
     handleRemoveFromCart,
     handlePriceRange,
+    handleSearchQuery,
     handleClearFilter,
   }
 }
