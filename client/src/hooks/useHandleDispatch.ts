@@ -2,6 +2,7 @@ import { removeFromCart } from '../state/slices/cartSlice'
 import {
   clearFilters,
   filterRating,
+  filterSearch,
   priceRange,
   sort,
 } from '../state/slices/filtersSlice'
@@ -15,7 +16,7 @@ export default function useHandleDispatch() {
   // const handleRatingClick = (item) => {
   // dispatch()
   // }
-  
+
   const handlePriceRange = (event: Event, newValue: number | number[]) => {
     dispatch(priceRange(newValue))
   }
@@ -26,6 +27,10 @@ export default function useHandleDispatch() {
 
   const handleSort = (sortType: string) => {
     dispatch(sort(sortType))
+  }
+
+  const handleSearchQuery = (query: string) => {
+    dispatch(filterSearch(query))
   }
 
   const handleRemoveFromCart = (cartItemId: string) => {
@@ -41,6 +46,7 @@ export default function useHandleDispatch() {
     handleSort,
     handleRemoveFromCart,
     handlePriceRange,
+    handleSearchQuery,
     handleClearFilter,
   }
 }

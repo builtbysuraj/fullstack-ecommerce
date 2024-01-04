@@ -17,11 +17,20 @@ export default function useFilter() {
       )
         return false
 
+      // Rating filter
       if (
         stateData.stateRating &&
         !(item.rating >= Number(stateData.stateRating))
       )
-        // Rating filter
+        return false
+
+      // Search filter
+      if (
+        stateData.searchQuery &&
+        !item.title.toLowerCase().includes(stateData.searchQuery) &&
+        !item.category.toLowerCase().includes(stateData.searchQuery) &&
+        !item.brand.toLowerCase().includes(stateData.searchQuery)
+      )
         return false
       // Add more filters as needed
       return true

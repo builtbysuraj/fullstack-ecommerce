@@ -1,14 +1,17 @@
 import {
   Box,
   Button,
+  Checkbox,
   FormControl,
   FormControlLabel,
+  FormGroup,
   Radio,
   RadioGroup,
   Slider,
   Typography,
 } from '@mui/material'
 import { RATING_TYPE, SORT_TYPE } from '../constants/filterConstants'
+import { categories } from '../db/productData'
 import useHandleDispatch from '../hooks/useHandleDispatch'
 import { useAppSelector } from '../state/store'
 
@@ -20,19 +23,28 @@ export default function Filters() {
     handlePriceRange,
     handleClearFilter,
   } = useHandleDispatch()
-  console.log(stateData)
+
   return (
     <>
       <h2>Filters</h2>
-      <Box
-        display="flex"
-        // alignItems="center"
-        justifyContent="center"
-        flexDirection="column"
-      >
+      <Typography fontWeight="bold">Price</Typography>
+      <Typography fontWeight="bold">
+        ${stateData.priceRange[0]} - ${stateData.priceRange[1]}
+      </Typography>
+      <Box display="flex" justifyContent="center" flexDirection="column">
+        <Box sx={{ m: 2 }}>
+          <Slider
+            value={stateData.priceRange}
+            onChange={handlePriceRange}
+            valueLabelDisplay="auto"
+            max={2000}
+            min={10}
+            step={100}
+          />
+        </Box>
         <FormControl>
           {/* Sort products */}
-          <Typography component="label" id="sort">
+          <Typography component="label" fontWeight="bold" id="sort">
             Sort
           </Typography>
           <RadioGroup
@@ -59,7 +71,7 @@ export default function Filters() {
           </RadioGroup>
 
           {/* Ratings filter */}
-          <Typography component="label" id="rating">
+          <Typography component="label" fontWeight="bold" id="rating">
             Customer Review
           </Typography>
           <RadioGroup
@@ -71,36 +83,42 @@ export default function Filters() {
             <FormControlLabel
               value={RATING_TYPE.FOUR_AND_UP}
               control={<Radio />}
-              label="4 and Up"
+              label="4 & Up"
             />
             <FormControlLabel
               value={RATING_TYPE.THREE_AND_UP}
               control={<Radio />}
-              label="3 and Up"
+              label="3 & Up"
             />
             <FormControlLabel
               value={RATING_TYPE.TWO_AND_UP}
               control={<Radio />}
-              label="2 and Up"
+              label="2 & Up"
             />
             <FormControlLabel
               value={RATING_TYPE.ONE_AND_UP}
               control={<Radio />}
-              label="1 and Up"
+              label="1 & Up"
             />
           </RadioGroup>
+
+          {/* @ts-expect-error  -  mui component issue */}
+          <FormGroup onChange={(e) => console.log(e.target.value)}>
+            {categories.map((category, index) => (
+              <FormControlLabel
+                value={category}
+                key={index}
+                control={<Checkbox />}
+                label={category}
+              />
+            ))}
+          </FormGroup>
         </FormControl>
 
-        <Box sx={{ width: 200, m: 2 }}>
-          <Slider
-            value={stateData.priceRange}
-            onChange={handlePriceRange}
-            valueLabelDisplay="auto"
-            max={2000}
-            min={10}
-          />
-        </Box>
-        <Button onClick={handleClearFilter}>Clear Filters</Button>
+        <br />
+        <Button onClick={handleClearFilter} variant="outlined">
+          Clear Filters
+        </Button>
       </Box>
     </>
   )
