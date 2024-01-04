@@ -1,4 +1,3 @@
-import { useDispatch } from 'react-redux'
 import { removeFromCart } from '../state/slices/cartSlice'
 import {
   clearFilters,
@@ -6,9 +5,10 @@ import {
   priceRange,
   sort,
 } from '../state/slices/filtersSlice'
+import { useAppDispatch } from '../state/store'
 
 export default function useHandleDispatch() {
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   // const handlePriceClick = (item) => {
   //   dispatch({ type: 'SORT_BY_PRICE_HIGH_TO_LOW', payload: item.target.value })
   // }

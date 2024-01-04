@@ -1,8 +1,8 @@
-import { useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
 
 import useFetch from '../hooks/useFetch'
 import { addToCart } from '../state/slices/cartSlice'
+import { useAppDispatch } from '../state/store'
 
 export default function ProductDetailsPage() {
   const { id } = useParams()
@@ -10,7 +10,7 @@ export default function ProductDetailsPage() {
   const { data } = useFetch(
     `${import.meta.env.VITE_API_BASE_URL}/products/${id}`
   )
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   const handleAddToCart = () => {
     dispatch(addToCart(data))

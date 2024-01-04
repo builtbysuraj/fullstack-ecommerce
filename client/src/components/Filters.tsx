@@ -8,20 +8,19 @@ import {
   Slider,
   Typography,
 } from '@mui/material'
-import { useSelector } from 'react-redux'
 import { RATING_TYPE, SORT_TYPE } from '../constants/filterConstants'
 import useHandleDispatch from '../hooks/useHandleDispatch'
-import { RootState } from '../state/store'
+import { useAppSelector } from '../state/store'
 
 export default function Filters() {
-  const stateData = useSelector((state: RootState) => state.filtersReducer)
+  const stateData = useAppSelector((state) => state.filtersReducer)
   const {
     handleFilterRating,
     handleSort,
     handlePriceRange,
     handleClearFilter,
   } = useHandleDispatch()
-
+  console.log(stateData)
   return (
     <>
       <h2>Filters</h2>
@@ -32,15 +31,14 @@ export default function Filters() {
         flexDirection="column"
       >
         <FormControl>
-          
           {/* Sort products */}
           <Typography component="label" id="sort">
             Sort
           </Typography>
           <RadioGroup
             aria-labelledby="sort"
-            defaultValue=""
             name="sort product"
+            value={stateData.sort}
             onChange={(e) => handleSort(e.target.value)}
           >
             <FormControlLabel
@@ -66,8 +64,8 @@ export default function Filters() {
           </Typography>
           <RadioGroup
             aria-labelledby="rating"
-            defaultValue=""
             name="rating filters"
+            value={stateData.stateRating}
             onChange={(e) => handleFilterRating(e.target.value)}
           >
             <FormControlLabel
