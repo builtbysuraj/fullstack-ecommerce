@@ -1,4 +1,4 @@
-import { removeFromCart } from '../state/slices/cartSlice'
+import { addToCart, removeFromCart } from '../state/slices/cartSlice'
 import {
   clearFilters,
   filterRating,
@@ -7,15 +7,10 @@ import {
   sort,
 } from '../state/slices/filtersSlice'
 import { useAppDispatch } from '../state/store'
+import { Product } from '../types'
 
 export default function useHandleDispatch() {
   const dispatch = useAppDispatch()
-  // const handlePriceClick = (item) => {
-  //   dispatch({ type: 'SORT_BY_PRICE_HIGH_TO_LOW', payload: item.target.value })
-  // }
-  // const handleRatingClick = (item) => {
-  // dispatch()
-  // }
 
   const handlePriceRange = (event: Event, newValue: number | number[]) => {
     dispatch(priceRange(newValue))
@@ -33,6 +28,10 @@ export default function useHandleDispatch() {
     dispatch(filterSearch(query))
   }
 
+  const handleAddToCart = (data: Product) => {
+    dispatch(addToCart(data))
+  }
+
   const handleRemoveFromCart = (cartItemId: string) => {
     dispatch(removeFromCart(cartItemId))
   }
@@ -44,6 +43,7 @@ export default function useHandleDispatch() {
   return {
     handleFilterRating,
     handleSort,
+    handleAddToCart,
     handleRemoveFromCart,
     handlePriceRange,
     handleSearchQuery,
