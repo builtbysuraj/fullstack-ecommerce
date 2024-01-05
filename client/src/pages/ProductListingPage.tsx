@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom'
 
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
-import Filters from '../components/Filters'
 import useFilter from '../hooks/useFilters'
+import { SidebarFilters } from '../layouts'
 import { Product } from '../types'
 
 export default function ProductListingPage() {
@@ -12,7 +12,7 @@ export default function ProductListingPage() {
   return (
     <div style={{ display: 'flex', margin: '1rem', gap: 2 }}>
       <div style={{ flex: 1 }}>
-        <Filters />
+        <SidebarFilters />
       </div>
       <Box sx={{ flex: 4 }}>
         {filteredData?.map((product: Product) => (
