@@ -2,9 +2,9 @@ import { createRoot } from 'react-dom/client'
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 
-import { CssBaseline, ThemeProvider, createTheme } from '@mui/material'
+import { ThemeProvider, createTheme } from '@mui/material'
 import App from './App'
-import './assets/global.css'
+import './assets/reset.css'
 import store from './state/store'
 
 if (process.env.NODE_ENV !== 'development') {
@@ -56,7 +56,6 @@ createRoot(document.querySelector('#root') as HTMLElement).render(
   <Provider store={store}>
     <ThemeProvider theme={theme}>
       <BrowserRouter>
-        <CssBaseline />
         <App />
       </BrowserRouter>
     </ThemeProvider>

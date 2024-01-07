@@ -1,4 +1,8 @@
-import { addToCart, removeFromCart } from '../state/slices/cartSlice'
+import {
+  addToCart,
+  decrementCartItem,
+  removeFromCart,
+} from '../state/slices/cartSlice'
 import {
   clearFilters,
   filterRating,
@@ -7,7 +11,7 @@ import {
   sort,
 } from '../state/slices/filtersSlice'
 import { useAppDispatch } from '../state/store'
-import { Product } from '../types'
+import { ProductType } from '../types'
 
 export default function useHandleDispatch() {
   const dispatch = useAppDispatch()
@@ -28,8 +32,12 @@ export default function useHandleDispatch() {
     dispatch(filterSearch(query))
   }
 
-  const handleAddToCart = (data: Product) => {
+  const handleAddToCart = (data: ProductType) => {
     dispatch(addToCart(data))
+  }
+
+  const handleDecrementCartItem = (data: ProductType) => {
+    dispatch(decrementCartItem(data))
   }
 
   const handleRemoveFromCart = (cartItemId: string) => {
@@ -44,6 +52,7 @@ export default function useHandleDispatch() {
     handleFilterRating,
     handleSort,
     handleAddToCart,
+    handleDecrementCartItem,
     handleRemoveFromCart,
     handlePriceRange,
     handleSearchQuery,

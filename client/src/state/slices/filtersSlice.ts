@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { products } from '../../db/productData'
-import { Product } from '../../types'
+import { ProductType } from '../../types'
 
 type InitialStateType = {
-  data: Product[]
+  data: ProductType[]
   sort: string
   stateRating: string | null
   priceRange: number[]

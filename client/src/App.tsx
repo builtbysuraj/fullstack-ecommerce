@@ -9,7 +9,7 @@ import {
 
 export default function App() {
   return (
-    <div>
+    <div className="AppContainer">
       <Header />
       <Routes>
         <Route path="/" element={<HomePage />} />
