@@ -1,4 +1,4 @@
-export type Product = {
+export type ProductType = {
   id: number
   title: string
   description: string
@@ -9,6 +9,19 @@ export type Product = {
   brand: string
   category: string
   thumbnail: string
-  quantity?: number
-  cartItemId?: string
+}
+
+export type CartType = {
+  id: number
+  title: string
+  description: string
+  price: number
+  discountPercentage?: number
+  rating: number
+  stock: number
+  brand: string
+  category: string
+  thumbnail: string
+  quantity: number
+  cartItemId: string
 }
