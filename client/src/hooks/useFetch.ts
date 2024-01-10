@@ -1,3 +1,4 @@
+import axios from 'axios'
 import { useCallback, useEffect, useState } from 'react'
 
 type FetchState = {
@@ -7,19 +8,15 @@ type FetchState = {
 }
 
 export default function useFetch(URL: string): FetchState {
-  const [data, setData] = useState<any | null>(null)
-  const [isLoading, setIsLoading] = useState<boolean>(false)
+  const [data, setData] = useState(null)
+  const [isLoading, setIsLoading] = useState<boolean>(true)
   const [error, setError] = useState<Error | null>(null)
 
   const apiCall = useCallback(() => {
     const fetchData = async () => {
-      setIsLoading(true)
-      setError(null)
       try {
-        const response = await fetch(URL)
-        if (!response.ok) throw new Error("Response isn't OK")
-        const parseData = await response.json()
-        setData(parseData)
+        const response = await axios.get(URL)
+        setData(response.data)
       } catch (error) {
         setError(error as Error)
       } finally {
@@ -29,8 +26,10 @@ export default function useFetch(URL: string): FetchState {
 
     fetchData()
   }, [URL])
-  
-  useEffect(apiCall, [URL])
+
+  useEffect(() => {
+    apiCall()
+  }, [apiCall]) 
 
   return { data, isLoading, error }
 }

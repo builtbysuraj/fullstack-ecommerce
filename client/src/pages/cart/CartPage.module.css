@@ -1,0 +1,38 @@
+.cart-container {
+  width: 1300px;
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+  margin-top: 1.2rem;
+  gap: 1.2rem;
+}
+
+.cart-btn {
+  border: 1px solid black;
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+}
+
+.cart-removefromcart {
+  font-weight: bold;
+}
+
+.cart-image {
+  height: 200px;
+  width: 200px;
+}
+
+.cart-products {
+  width: 900px;
+  background-color: white;
+  margin-bottom: 0.1rem;
+  padding: 1rem;
+}
+
+.cart-price {
+  background-color: white;
+  height: fit-content;
+  padding: 1rem;
+}

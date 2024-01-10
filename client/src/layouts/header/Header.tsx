@@ -1,9 +1,9 @@
 import { AppBar, Box, Button, Container, TextField } from '@mui/material'
 import { Link } from 'react-router-dom'
 
-import cart from '../assets/img/cart.svg'
-import useHandleDispatch from '../hooks/useHandleDispatch'
-import { useAppSelector } from '../state/store'
+import cart from '../../assets/img/cart.svg'
+import useHandleDispatch from '../../hooks/useHandleDispatch'
+import { useAppSelector } from '../../state/store'
 import flipkart from '/flipkart.png'
 
 export default function Header() {
@@ -11,7 +11,7 @@ export default function Header() {
   const { handleSearchQuery } = useHandleDispatch()
 
   return (
-    <AppBar elevation={1} position="sticky" sx={{}}>
+    <AppBar elevation={1} position="sticky">
       <Container>
         <div
           style={{
