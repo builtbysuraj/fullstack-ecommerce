@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { products } from '../../db/productData'
 import { ProductType } from '../../types'
 
 type InitialStateType = {
@@ -11,7 +10,7 @@ type InitialStateType = {
 }
 
 export const initialState: InitialStateType = {
-  data: products,
+  data: [],
   sort: '',
   stateRating: null,
   priceRange: [10, 2000],

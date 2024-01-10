@@ -1,13 +1,13 @@
 import { SORT_TYPE } from '../constants/filterConstants'
+import { useGetAllProductsQuery } from '../state/services/productApi'
 import { useAppSelector } from '../state/store'
 
 export default function useFilter() {
   const stateData = useAppSelector((state) => state.filtersReducer)
-
-  const filteredData = stateData.data
-    .filter((item) => {
+  const { data } = useGetAllProductsQuery()
+  const filteredData = data?.products
+    ?.filter((item) => {
       // Price filter
-      // if (state.price && item.price !== state.price) return false
       if (
         stateData.priceRange &&
         !(

@@ -1,16 +1,15 @@
 import { Link, useParams } from 'react-router-dom'
 
 import { useState } from 'react'
-import { ENV } from '../../conf'
-import useFetch from '../../hooks/useFetch'
 import useHandleDispatch from '../../hooks/useHandleDispatch'
+import { useGetProductByIdQuery } from '../../state/services/productApi'
 
 export default function ProductDetailsPage() {
   const [isAddedToCart, setIsAddedToCart] = useState(false)
   const { id } = useParams()
   const { handleAddToCart } = useHandleDispatch()
 
-  const { data } = useFetch(`${ENV.API_BASE_URL}/products/${id}`)
+  const { data } = useGetProductByIdQuery(String(id))
   console.log(data)
   return (
     <div style={{ display: 'flex', gap: '1rem' }}>
