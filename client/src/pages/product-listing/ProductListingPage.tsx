@@ -2,9 +2,9 @@ import { Link } from 'react-router-dom'
 
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
-import useFilter from '../../hooks/useFilters'
-import { SidebarFilters } from '../../layouts'
-import { ProductType } from '../../types'
+import useFilter from '@/hooks/useFilters'
+import { SidebarFilters } from '@/layouts'
+import { ProductType } from '@/types'
 
 export default function ProductListingPage() {
   const { filteredData } = useFilter()

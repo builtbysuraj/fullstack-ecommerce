@@ -1,0 +1,18 @@
+:root {
+  --color-white: #f0f0f0;
+  --color-white-bg: #fff;
+  --color-black: #000;
+  --color-light-black: #172337;
+  --color-border-grey: #e4e7ed;
+  --color-brand-orange: #fb641b;
+  --color-brand-blue: #2874f0;
+  --color-brand-bbd: #2455f4;
+  --color-brand-refurb: #f2575b;
+  --color-brand-footer: #172337;
+  --color-brand-blue-lighter: #7accff;
+  --color-brand-blue-lighter1: #dfeafd;
+  --color-error: #e4001e;
+  --color-dark-blue1: #1d6ded;
+  --color-bright-orange: #e79900;
+  --color-grey-grade: #878787;
+}

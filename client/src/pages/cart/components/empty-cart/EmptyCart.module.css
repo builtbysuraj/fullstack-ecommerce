@@ -1,0 +1,24 @@
+@import '../../../../assets/css/colors.css';
+
+.empty-cart-container {
+  width: 80rem;
+  background-color: white;
+  text-align: center;
+  margin: 2rem auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 31rem;
+  flex-direction: column;
+}
+
+.empty-cart-btn {
+  border: 0;
+  font-size: 14px;
+  margin-top: 20px;
+  padding: 12px 72px;
+  background: var(--color-brand-orange);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+  color: #fff;
+  cursor: pointer;
+}

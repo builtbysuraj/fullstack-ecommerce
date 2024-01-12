@@ -1,6 +1,6 @@
-import { SORT_TYPE } from '../constants/filterConstants'
-import { useGetAllProductsQuery } from '../state/services/productApi'
-import { useAppSelector } from '../state/store'
+import { SORT_TYPE } from '@/constants/filterConstants'
+import { useGetAllProductsQuery } from '@/state/services/productApi'
+import { useAppSelector } from '@/state/store'
 
 export default function useFilter() {
   const stateData = useAppSelector((state) => state.filtersReducer)

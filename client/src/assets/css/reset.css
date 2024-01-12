@@ -14,12 +14,15 @@ html {
 body {
   line-height: 1.5;
   min-height: 100vh;
+  min-width: 100vw;
+  /* overflow-x: hidden; */
 }
 
 .AppContainer {
   background-color: #f1f3f6;
   z-index: -1;
   min-height: 100vh;
+  min-width: 100rem;
 }
 
 input,

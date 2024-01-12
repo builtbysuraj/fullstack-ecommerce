@@ -2,16 +2,16 @@ import {
   addToCart,
   decrementCartItem,
   removeFromCart,
-} from '../state/slices/cartSlice'
+} from '@/state/slices/cartSlice'
 import {
   clearFilters,
   filterRating,
   filterSearch,
   priceRange,
   sort,
-} from '../state/slices/filtersSlice'
-import { useAppDispatch } from '../state/store'
-import { ProductType } from '../types'
+} from '@/state/slices/filtersSlice'
+import { useAppDispatch } from '@/state/store'
+import { ProductType } from '@/types'
 
 export default function useHandleDispatch() {
   const dispatch = useAppDispatch()

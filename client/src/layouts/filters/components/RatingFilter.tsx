@@ -1,5 +1,5 @@
 import { FormControlLabel, Radio, RadioGroup, Typography } from '@mui/material'
-import { RATING_TYPE } from '../../../constants/filterConstants'
+import { RATING_TYPE } from '@/constants/filterConstants'
 
 export default function RatingFilter({ stateData, handleFilterRating }) {
   return (
