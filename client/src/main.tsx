@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom'
 
 import { ThemeProvider, createTheme } from '@mui/material'
 import App from './App'
-import './assets/reset.css'
+import './assets/css/reset.css'
 import store from './state/store'
 
 if (process.env.NODE_ENV !== 'development') {
@@ -40,8 +40,7 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           background: '#2874f0',
-          // padding: '0.7rem',
-          // margin: '0.4rem',
+          height: '3.6rem',
         },
       },
       defaultProps: {

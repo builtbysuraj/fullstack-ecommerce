@@ -1,5 +1,5 @@
 import { FormControlLabel, Radio, RadioGroup, Typography } from '@mui/material'
-import { SORT_TYPE } from '../../../constants/filterConstants'
+import { SORT_TYPE } from '@/constants/filterConstants'
 
 export default function SortProductsFilter({ stateData, handleSort }) {
   return (
