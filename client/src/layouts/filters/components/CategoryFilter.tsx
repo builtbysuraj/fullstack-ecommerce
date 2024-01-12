@@ -1,5 +1,5 @@
 import { Checkbox, FormControlLabel, FormGroup } from '@mui/material'
-import { categories } from '../../../db/productData'
+import { categories } from '@/db/productData'
 
 export default function CategoryFilter() {
   return (

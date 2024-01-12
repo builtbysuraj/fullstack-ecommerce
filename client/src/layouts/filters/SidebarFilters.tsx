@@ -1,7 +1,7 @@
 import { Box, Button, FormControl, Typography } from '@mui/material'
 
-import useHandleDispatch from '../../hooks/useHandleDispatch'
-import { useAppSelector } from '../../state/store'
+import useHandleDispatch from '@/hooks/useHandleDispatch'
+import { useAppSelector } from '@/state/store'
 import PriceSliderFilter from './components/PriceSliderFilter'
 import SortProductsFilter from './components/SortProductsFilter'
 import RatingFilter from './components/RatingFilter'

@@ -1,0 +1,15 @@
+@import '../../../../assets/css/colors.css';
+
+.cart-price {
+  background-color: var(--color-white-bg);
+  height: fit-content;
+  width: 40rem;
+  padding: 1rem;
+}
+
+.cart-price section {
+  margin: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

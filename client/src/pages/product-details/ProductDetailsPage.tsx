@@ -1,8 +1,8 @@
 import { Link, useParams } from 'react-router-dom'
 
 import { useState } from 'react'
-import useHandleDispatch from '../../hooks/useHandleDispatch'
-import { useGetProductByIdQuery } from '../../state/services/productApi'
+import useHandleDispatch from '@/hooks/useHandleDispatch'
+import { useGetProductByIdQuery } from '@/state/services/productApi'
 
 export default function ProductDetailsPage() {
   const [isAddedToCart, setIsAddedToCart] = useState(false)
