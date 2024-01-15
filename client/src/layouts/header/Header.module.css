@@ -6,9 +6,9 @@
   justify-content: center;
   min-width: 100rem;
   /* position: sticky; */
-  a {
-    color: white;
-  }
+}
+.header-container a {
+  color: white;
 }
 
 .header-wrapper {
@@ -23,16 +23,16 @@
 .header-input {
   outline: 0;
   border: 0;
-  padding: 0 0.8rem;
+  padding: 0 0.9rem;
   margin: 0 0.7rem;
-  height: 2rem;
+  height: 2.2rem;
   width: 30rem;
   box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
   font-size: 0.9rem;
   border-radius: 2px;
 }
 
-.header-btn {
+.header-login-btn {
   outline: 0;
   border: 0;
   cursor: pointer;
@@ -50,7 +50,7 @@
 
 .header-search-icon {
   position: absolute;
-  top: 6px;
+  top: 9px;
   right: 20px;
   cursor: pointer;
 }

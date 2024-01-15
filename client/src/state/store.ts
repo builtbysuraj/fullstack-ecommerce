@@ -6,8 +6,8 @@ import { cartReducer, filtersReducer } from './slices'
 
 const store = configureStore({
   reducer: {
-    cartReducer,
-    filtersReducer,
+    cart: cartReducer,
+    filter: filtersReducer,
     [productApi.reducerPath]: productApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
