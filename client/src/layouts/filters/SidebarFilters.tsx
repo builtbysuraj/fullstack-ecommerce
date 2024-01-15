@@ -8,7 +8,7 @@ import RatingFilter from './components/RatingFilter'
 import CategoryFilter from './components/CategoryFilter'
 
 export default function SidebarFilters() {
-  const stateData = useAppSelector((state) => state.filtersReducer)
+  const stateData = useAppSelector((state) => state.filter)
   const {
     handleFilterRating,
     handleSort,

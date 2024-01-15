@@ -9,7 +9,7 @@ import EmptyCart from './components/empty-cart/EmptyCart'
 const cx = classNames.bind(styles)
 
 export default function CartPage() {
-  const cartData = useAppSelector((state) => state.cartReducer)
+  const cartData = useAppSelector((state) => state.cart)
   const { handleRemoveFromCart, handleDecrementCartItem, handleAddToCart } =
     useHandleDispatch()
 
@@ -36,7 +36,7 @@ export default function CartPage() {
                 <small>Seller: Internet</small>
               </div>
               <small>
-                Delivery by Mon Jan 15 | $80Free
+                Delivery by Mon Jan 15
               </small>
             </div>
             <div className={cx('cart-item-quantity')}>

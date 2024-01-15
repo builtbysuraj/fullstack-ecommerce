@@ -3,7 +3,7 @@ import { useGetAllProductsQuery } from '@/state/services/productApi'
 import { useAppSelector } from '@/state/store'
 
 export default function useFilter() {
-  const stateData = useAppSelector((state) => state.filtersReducer)
+  const stateData = useAppSelector((state) => state.filter)
   const { data } = useGetAllProductsQuery()
   const filteredData = data?.products
     ?.filter((item) => {
