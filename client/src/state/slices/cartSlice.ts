@@ -1,19 +1,16 @@
+import { CartType } from '@/types'
 import { PayloadAction, createSlice, nanoid } from '@reduxjs/toolkit'
-import { CartType } from '../../types'
 
-const item = localStorage.getItem('cart')
-const initialState = item ? JSON.parse(item) : []
+const initialState = JSON.parse(localStorage.getItem('cart') || '[]')
 
 const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
     addToCart(state, action: PayloadAction<CartType>) {
-      const itemIndex = state.findIndex(
-        (item: CartType) => item.id === action.payload.id
-      )
-      if (itemIndex >= 0) {
-        state[itemIndex].quantity += 1
+      const item = state.find((item: CartType) => item.id === action.payload.id)
+      if (item) {
+        item.quantity += 1
       } else {
         state.push({
           ...action.payload,
@@ -24,19 +21,13 @@ const cartSlice = createSlice({
       localStorage.setItem('cart', JSON.stringify(state))
     },
     decrementCartItem(state, action) {
-      const itemIndex = state.findIndex(
+      const item = state.find(
         (item: CartType) => item.cartItemId === action.payload.cartItemId
       )
-      if (state[itemIndex].quantity < 1) {
-        const newState = state.filter(
-          (item: CartType) => item.cartItemId !== action.payload.cartItemId
-        )
-        localStorage.setItem('cart', JSON.stringify(newState))
-        return newState
-      } else if (itemIndex >= 0 && state[itemIndex].quantity !== 0) {
-        state[itemIndex].quantity -= 1
-        localStorage.setItem('cart', JSON.stringify(state))
+      if (item?.quantity > 1) {
+        item.quantity -= 1
       }
+      localStorage.setItem('cart', JSON.stringify(state))
     },
     removeFromCart(state, action: PayloadAction<string>) {
       const newState = state.filter(
