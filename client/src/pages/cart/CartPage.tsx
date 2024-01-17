@@ -1,10 +1,12 @@
 import classNames from 'classnames/bind'
+
 import useHandleDispatch from '@/hooks/useHandleDispatch'
 import { useAppSelector } from '@/state/store'
 import { CartType } from '@/types'
 import styles from './CartPage.module.css'
 import CartPriceDetails from './components/cart-price-details/CartPriceDetails'
 import EmptyCart from './components/empty-cart/EmptyCart'
+import PlaceOrder from './components/place-order/PlaceOrder'
 
 const cx = classNames.bind(styles)
 
@@ -35,9 +37,7 @@ export default function CartPage() {
                 <br />
                 <small>Seller: Internet</small>
               </div>
-              <small>
-                Delivery by Mon Jan 15
-              </small>
+              <small>Delivery by Mon Jan 15</small>
             </div>
             <div className={cx('cart-item-quantity')}>
               <button
@@ -65,9 +65,7 @@ export default function CartPage() {
             </div>
           </div>
         ))}
-        <div className={cx('cart-item', 'place-order')}>
-          <button>PLACE ORDER</button>
-        </div>
+        <PlaceOrder cartData={cartData} />
       </div>
       <CartPriceDetails cartData={cartData} />
     </div>
