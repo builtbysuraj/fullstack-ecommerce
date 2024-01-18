@@ -2,7 +2,7 @@ import { Divider } from '@mui/material'
 import classNames from 'classnames/bind'
 
 import { CartType } from '@/types'
-import { calculateCartPrice } from '@/utils'
+import { totalCartPrice } from '@/utils'
 import styles from './CartPriceDetails.module.css'
 
 const cx = classNames.bind(styles)
@@ -18,7 +18,7 @@ export default function CartPriceDetails({ cartData }: Props) {
       <Divider />
       <section>
         <span>{`Price (${cartData.length} items) `}</span>
-        <span>${`${calculateCartPrice(cartData)}`}</span>
+        <span>${`${totalCartPrice(cartData)}`}</span>
       </section>
       <section>
         <span>Discount</span>
@@ -33,7 +33,7 @@ export default function CartPriceDetails({ cartData }: Props) {
       <Divider />
       <section>
         <strong>Total Amount</strong>
-        <strong>${`${calculateCartPrice(cartData)}`}</strong>
+        <strong>${`${totalCartPrice(cartData)}`}</strong>
       </section>
       <p>You will save $134 on this order</p>
     </div>

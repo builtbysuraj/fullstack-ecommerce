@@ -11,7 +11,7 @@ import {
   sort,
 } from '@/state/slices/filtersSlice'
 import { useAppDispatch } from '@/state/store'
-import { ProductType } from '@/types'
+import { CartType } from '@/types'
 
 export default function useHandleDispatch() {
   const dispatch = useAppDispatch()
@@ -32,11 +32,11 @@ export default function useHandleDispatch() {
     dispatch(filterSearch(query))
   }
 
-  const handleAddToCart = (data: ProductType) => {
+  const handleAddToCart = (data: CartType) => {
     dispatch(addToCart(data))
   }
 
-  const handleDecrementCartItem = (data: ProductType) => {
+  const handleDecrementCartItem = (data: CartType) => {
     dispatch(decrementCartItem(data))
   }
 

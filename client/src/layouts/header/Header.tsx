@@ -1,18 +1,18 @@
 import { Link } from 'react-router-dom'
 
-import classNames from 'classnames/bind'
 import cart from '@/assets/img/cart.svg'
 import search from '@/assets/img/search.svg'
 import useHandleDispatch from '@/hooks/useHandleDispatch'
 import { useAppSelector } from '@/state/store'
+import classNames from 'classnames/bind'
 import styles from './Header.module.css'
 import flipkart from '/flipkart.png'
 
 const cx = classNames.bind(styles)
 
 export default function Header() {
-  const stateData = useAppSelector((state) => state.filtersReducer)
-  const cartData = useAppSelector((state) => state.cartReducer)
+  const stateData = useAppSelector((state) => state.filter)
+  const cartData = useAppSelector((state) => state.cart)
   const { handleSearchQuery } = useHandleDispatch()
 
   return (
@@ -37,7 +37,9 @@ export default function Header() {
           />
         </div>
         <div>
-          <button className={cx('header-btn')}>Login</button>
+          <Link to="/login">
+            <button className={cx('header-login-btn')}>Login</button>
+          </Link>
         </div>
         <div>
           <Link to="/products">All products</Link>
