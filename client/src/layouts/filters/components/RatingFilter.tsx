@@ -1,7 +1,17 @@
-import { FormControlLabel, Radio, RadioGroup, Typography } from '@mui/material'
 import { RATING_TYPE } from '@/constants/filterConstants'
+import { FormControlLabel, Radio, RadioGroup, Typography } from '@mui/material'
 
-export default function RatingFilter({ stateData, handleFilterRating }) {
+type Props = {
+  searchParams: URLSearchParams
+  handleFilterRating: (arg0: string) => void
+}
+
+export default function RatingFilter({
+  searchParams,
+  handleFilterRating,
+}: Props) {
+  const rating = searchParams.get('rating') || ''
+
   return (
     <>
       <Typography component="label" fontWeight="bold" id="rating">
@@ -10,7 +20,7 @@ export default function RatingFilter({ stateData, handleFilterRating }) {
       <RadioGroup
         aria-labelledby="rating"
         name="rating filters"
-        value={stateData.stateRating}
+        value={rating}
         onChange={(e) => handleFilterRating(e.target.value)}
       >
         <FormControlLabel

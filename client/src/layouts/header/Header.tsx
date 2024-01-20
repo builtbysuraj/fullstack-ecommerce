@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 
 import cart from '@/assets/img/cart.svg'
 import search from '@/assets/img/search.svg'
@@ -11,9 +11,10 @@ import flipkart from '/flipkart.png'
 const cx = classNames.bind(styles)
 
 export default function Header() {
-  const stateData = useAppSelector((state) => state.filter)
   const cartData = useAppSelector((state) => state.cart)
+  const searchParams = useSearchParams()[0]
   const { handleSearchQuery } = useHandleDispatch()
+  const q = searchParams.get('q') || ''
 
   return (
     <header className={cx('header-container')}>
@@ -27,7 +28,7 @@ export default function Header() {
           <input
             className={cx('header-input')}
             placeholder="Search for products, brands and more"
-            value={stateData.searchQuery}
+            value={q}
             onChange={(e) => handleSearchQuery(e.target.value)}
           />
           <img

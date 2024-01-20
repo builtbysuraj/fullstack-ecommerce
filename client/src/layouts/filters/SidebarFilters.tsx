@@ -1,14 +1,15 @@
-import { Box, Button, FormControl, Typography } from '@mui/material'
+import { Box, FormControl, Typography } from '@mui/material'
+import { useSearchParams } from 'react-router-dom'
 
 import useHandleDispatch from '@/hooks/useHandleDispatch'
-import { useAppSelector } from '@/state/store'
-import PriceSliderFilter from './components/PriceSliderFilter'
-import SortProductsFilter from './components/SortProductsFilter'
-import RatingFilter from './components/RatingFilter'
 import CategoryFilter from './components/CategoryFilter'
+import PriceSliderFilter from './components/PriceSliderFilter'
+import RatingFilter from './components/RatingFilter'
+import SortProductsFilter from './components/SortProductsFilter'
 
 export default function SidebarFilters() {
-  const stateData = useAppSelector((state) => state.filter)
+  // const stateData = useAppSelector((state) => state.filter)
+  const searchParams = useSearchParams()[0]
   const {
     handleFilterRating,
     handleSort,
@@ -22,29 +23,33 @@ export default function SidebarFilters() {
         Filters
       </Typography>
       <Box display="flex" justifyContent="center" flexDirection="column">
+
         {/* Clear Filters */}
-        <Button onClick={handleClearFilter} variant="outlined">
-          Clear Filters
-        </Button>
+        <button onClick={handleClearFilter}>Clear Filters</button>
         <br />
 
+        {/* Price Filter */}
         <PriceSliderFilter
-          stateData={stateData}
+          searchParams={searchParams}
           handlePriceRange={handlePriceRange}
         />
         <FormControl>
+
           {/* Sort products */}
-          <SortProductsFilter stateData={stateData} handleSort={handleSort} />
+          <SortProductsFilter
+            searchParams={searchParams}
+            handleSort={handleSort}
+          />
 
           {/* Ratings filter */}
           <RatingFilter
-            stateData={stateData}
+            searchParams={searchParams}
             handleFilterRating={handleFilterRating}
           />
         </FormControl>
 
         {/* Category Filters */}
-        <CategoryFilter />
+        <CategoryFilter searchParams={searchParams} />
       </Box>
     </>
   )

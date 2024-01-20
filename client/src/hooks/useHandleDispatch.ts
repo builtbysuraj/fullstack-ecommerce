@@ -1,27 +1,31 @@
+import { useSearchParams } from 'react-router-dom'
+
 import {
   addToCart,
   decrementCartItem,
   removeFromCart,
 } from '@/state/slices/cartSlice'
-import {
-  clearFilters,
-  filterRating,
-  filterSearch,
-  priceRange,
-  sort,
-} from '@/state/slices/filtersSlice'
+import { sort } from '@/state/slices/filtersSlice'
 import { useAppDispatch } from '@/state/store'
 import { CartType } from '@/types'
 
 export default function useHandleDispatch() {
   const dispatch = useAppDispatch()
+  const setSearchParams = useSearchParams()[1]
 
   const handlePriceRange = (event: Event, newValue: number | number[]) => {
-    dispatch(priceRange(newValue))
+    setSearchParams((prev) => {
+      // @ts-expect-error - MUI's fault?
+      prev.set('price', `${newValue[0]}-${newValue[1]}`)
+      return prev
+    })
   }
 
   const handleFilterRating = (filterValue: string) => {
-    dispatch(filterRating(filterValue))
+    setSearchParams((prev) => {
+      prev.set('rating', filterValue)
+      return prev
+    })
   }
 
   const handleSort = (sortType: string) => {
@@ -29,7 +33,10 @@ export default function useHandleDispatch() {
   }
 
   const handleSearchQuery = (query: string) => {
-    dispatch(filterSearch(query))
+    setSearchParams((prev) => {
+      prev.set('q', query)
+      return prev
+    })
   }
 
   const handleAddToCart = (data: CartType) => {
@@ -44,8 +51,22 @@ export default function useHandleDispatch() {
     dispatch(removeFromCart(cartItemId))
   }
 
+  const handleCategoryFilter = (category: string) => {
+    setSearchParams((prev) => {
+      prev.set('category', category)
+      prev.delete('q')
+      return prev
+    })
+  }
+
   const handleClearFilter = () => {
-    dispatch(clearFilters())
+    setSearchParams((prev) => {
+      prev.delete('q')
+      prev.delete('category')
+      prev.delete('rating')
+      prev.delete('price')
+      return prev
+    })
   }
 
   return {
@@ -56,6 +77,7 @@ export default function useHandleDispatch() {
     handleRemoveFromCart,
     handlePriceRange,
     handleSearchQuery,
+    handleCategoryFilter,
     handleClearFilter,
   }
 }

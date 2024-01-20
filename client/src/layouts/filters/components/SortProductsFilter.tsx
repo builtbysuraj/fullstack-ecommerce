@@ -1,13 +1,18 @@
-import { FormControlLabel, Radio, RadioGroup, Typography } from '@mui/material'
 import { SORT_TYPE } from '@/constants/filterConstants'
+import { FormControlLabel, Radio, RadioGroup, Typography } from '@mui/material'
 
-export default function SortProductsFilter({ stateData, handleSort }) {
+type Props = {
+  searchParams: URLSearchParams
+  handleSort: (arg0: string) => void
+}
+
+export default function SortProductsFilter({ searchParams, handleSort }: Props) {
   return (
     <>
       <Typography component="label" fontWeight="bold" id="sort">
         Sort
       </Typography>
-      <RadioGroup
+      {/* <RadioGroup
         aria-labelledby="sort"
         name="sort product"
         value={stateData.sort}
@@ -28,7 +33,7 @@ export default function SortProductsFilter({ stateData, handleSort }) {
           control={<Radio />}
           label="Rating High To Low"
         />
-      </RadioGroup>
+      </RadioGroup> */}
     </>
   )
 }
