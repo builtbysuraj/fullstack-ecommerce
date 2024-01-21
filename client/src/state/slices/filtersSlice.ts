@@ -7,6 +7,7 @@ type InitialStateType = {
   stateRating: string | null
   priceRange: number[]
   searchQuery: string
+  category: string
 }
 
 export const initialState: InitialStateType = {
@@ -15,6 +16,7 @@ export const initialState: InitialStateType = {
   stateRating: null,
   priceRange: [10, 2000],
   searchQuery: '',
+  category: '',
 }
 
 const filtersSlice = createSlice({
@@ -33,13 +35,22 @@ const filtersSlice = createSlice({
     filterSearch(state, action) {
       state.searchQuery = action.payload
     },
+    categoryFilter(state, action) {
+      state.category = action.payload
+    },
     clearFilters() {
       return initialState
     },
   },
 })
 
-export const { filterRating, sort, priceRange, filterSearch, clearFilters } =
-  filtersSlice.actions
+export const {
+  filterRating,
+  sort,
+  priceRange,
+  filterSearch,
+  categoryFilter,
+  clearFilters,
+} = filtersSlice.actions
 
 export default filtersSlice.reducer

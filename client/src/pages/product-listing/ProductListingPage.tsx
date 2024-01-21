@@ -1,13 +1,15 @@
 import { Link } from 'react-router-dom'
 
-import Box from '@mui/material/Box'
-import Paper from '@mui/material/Paper'
 import useFilter from '@/hooks/useFilters'
 import { SidebarFilters } from '@/layouts'
 import { ProductType } from '@/types'
+import Box from '@mui/material/Box'
+import Paper from '@mui/material/Paper'
 
 export default function ProductListingPage() {
-  const { filteredData } = useFilter()
+  const { filteredData, isLoading } = useFilter()
+
+  if (isLoading) return <h1>Loading....</h1>
 
   return (
     <div style={{ display: 'flex', margin: '1rem', gap: 2 }}>
