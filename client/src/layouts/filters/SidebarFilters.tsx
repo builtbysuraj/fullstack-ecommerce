@@ -22,7 +22,6 @@ export default function SidebarFilters() {
         Filters
       </Typography>
       <Box display="flex" justifyContent="center" flexDirection="column">
-
         {/* Clear Filters */}
         <button onClick={handleClearFilter}>Clear Filters</button>
         <br />
@@ -33,7 +32,6 @@ export default function SidebarFilters() {
           handlePriceRange={handlePriceRange}
         />
         <FormControl>
-
           {/* Sort products */}
           <SortProductsFilter
             searchParams={searchParams}

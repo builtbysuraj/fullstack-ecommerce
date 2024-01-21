@@ -21,7 +21,7 @@ export default function PriceSliderFilter({
       <Box sx={{ m: 2 }}>
         <Slider
           value={price}
-          onChange={ handlePriceRange}
+          onChange={handlePriceRange}
           valueLabelDisplay="auto"
           max={2000}
           min={10}

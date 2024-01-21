@@ -2,7 +2,7 @@ import { useSearchParams } from 'react-router-dom'
 
 export default function useGetParams() {
   const searchParams = useSearchParams()[0]
-  
+
   const q = searchParams.get('q') || ''
   const category = searchParams.get('category') || ''
   const rating = searchParams.get('rating') || ''

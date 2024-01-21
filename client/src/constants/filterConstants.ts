@@ -10,4 +10,3 @@ export const RATING_TYPE = {
   TWO_AND_UP: '2',
   ONE_AND_UP: '1',
 }
-
