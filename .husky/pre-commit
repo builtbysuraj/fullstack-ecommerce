@@ -28,7 +28,7 @@ npm run check-lint ||
 
 
 # Check Prettier standards
-npm run format-client ||
+npm run check-format-client ||
 (
     echo '
     Prettier Check Failed. ❌
@@ -36,7 +36,7 @@ npm run format-client ||
     false;
 )
 
-npm run format-server ||
+npm run check-format-server ||
 (
     echo '
     Prettier Check Failed. ❌

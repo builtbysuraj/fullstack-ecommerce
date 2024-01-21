@@ -11,7 +11,8 @@
     "check-lint": "eslint . --ext ts,tsx",
     "check-types": "tsc --pretty --noEmit",
     "test": "vitest",
-    "format": "prettier --write ./src"
+    "format": "prettier --write ./src",
+    "check-format": "prettier --check ./src"
   },
   "dependencies": {
     "@emotion/react": "^11.11.3",

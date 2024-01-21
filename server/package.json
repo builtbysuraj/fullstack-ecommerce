@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "nodemon src/index.js",
     "start": "node index.js",
-    "format": "prettier --write ./src"
+    "format": "prettier --write ./src",
+    "check-format": "prettier --check ./src"
   },
   "dependencies": {
     "cookie-parser": "^1.4.6",
