@@ -1,0 +1,12 @@
+{
+  "devDependencies": {
+    "husky": "^8.0.0"
+  },
+  "scripts": {
+    "prepare": "husky install",
+    "format-server": "cd server && npm run format",
+    "format-client": "cd client && npm run format",
+    "check-lint": "cd client && npm run check-lint",
+    "check-types": "cd client && npm run check-types"
+  }
+}

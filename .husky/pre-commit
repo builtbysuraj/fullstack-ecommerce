@@ -1,0 +1,45 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+echo '
+💅🛠️ Formatting and testing project before committing...
+'
+
+# Check tsconfig standards
+npm run check-types ||
+(
+    echo '
+    TypeScript Check Failed. ❌ 
+    Make the required changes listed above, add changes and try to commit again.
+    '
+    false;
+)
+
+
+# Check ESLint Standards
+npm run check-lint ||
+(
+    echo ' 
+    ESLint Check Failed. ❌
+    Make the required changes listed above, add changes and try to commit again.
+    '
+     false; 
+)
+
+
+# Check Prettier standards
+npm run format-client ||
+(
+    echo '
+    Prettier Check Failed. ❌
+    Run npm run format, add changes and try commit again.';
+    false;
+)
+
+npm run format-server ||
+(
+    echo '
+    Prettier Check Failed. ❌
+    Run npm run format, add changes and try commit again.';
+    false;
+)

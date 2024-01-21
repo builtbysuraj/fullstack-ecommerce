@@ -8,6 +8,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "check-lint": "eslint . --ext ts,tsx",
+    "check-types": "tsc --pretty --noEmit",
     "test": "vitest",
     "format": "prettier --write ./src"
   },

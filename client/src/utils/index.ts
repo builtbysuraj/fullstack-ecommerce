@@ -7,3 +7,9 @@ export const totalCartPrice = (cartData: CartType[]) => {
   }
   return cartPrice
 }
+
+type ClassesType = string | boolean | null | undefined
+
+export const cx = (...classes: ClassesType[]) => {
+  return classes.filter(Boolean).join(' ')
+}

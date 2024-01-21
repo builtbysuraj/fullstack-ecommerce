@@ -1,39 +1,52 @@
 import { SORT_TYPE } from '@/constants/filterConstants'
-import { FormControlLabel, Radio, RadioGroup, Typography } from '@mui/material'
+import { Typography } from '@mui/material'
 
 type Props = {
   searchParams: URLSearchParams
   handleSort: (arg0: string) => void
 }
 
-export default function SortProductsFilter({ searchParams, handleSort }: Props) {
+export default function SortProductsFilter({
+  searchParams,
+  handleSort,
+}: Props) {
+  const sort = searchParams.get('sort') || ''
   return (
     <>
       <Typography component="label" fontWeight="bold" id="sort">
         Sort
       </Typography>
-      {/* <RadioGroup
-        aria-labelledby="sort"
-        name="sort product"
-        value={stateData.sort}
-        onChange={(e) => handleSort(e.target.value)}
-      >
-        <FormControlLabel
+      <form>
+        <input
+          type="radio"
+          name="sort"
+          id="Sort by high to low price"
           value={SORT_TYPE.PRICE_HIGH_TO_LOW}
-          control={<Radio />}
-          label="Sort by high to low price"
+          onChange={(e) => handleSort(e.target.value)}
+          checked={sort === SORT_TYPE.PRICE_HIGH_TO_LOW}
         />
-        <FormControlLabel
+        <label htmlFor="Sort by high to low price">Price high to low</label>
+        <br />
+        <input
+          type="radio"
+          name="sort"
+          id="Sort by low to high price"
           value={SORT_TYPE.PRICE_LOW_TO_HIGH}
-          control={<Radio />}
-          label="Sort by low to high price"
+          onChange={(e) => handleSort(e.target.value)}
+          checked={sort === SORT_TYPE.PRICE_LOW_TO_HIGH}
         />
-        <FormControlLabel
+        <label htmlFor="Sort by low to high price">Price low to high</label>
+        <br />
+        <input
+          type="radio"
+          name="sort"
+          id="Rating High To Low"
           value={SORT_TYPE.RATING_HIGH_TO_LOW}
-          control={<Radio />}
-          label="Rating High To Low"
+          onChange={(e) => handleSort(e.target.value)}
+          checked={sort === SORT_TYPE.RATING_HIGH_TO_LOW}
         />
-      </RadioGroup> */}
+        <label htmlFor="Rating High To Low">Rating High To Low</label> <br />
+      </form>
     </>
   )
 }

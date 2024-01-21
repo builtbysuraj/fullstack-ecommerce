@@ -1,15 +1,12 @@
 import { SORT_TYPE } from '@/constants/filterConstants'
 import { useGetAllProductsQuery } from '@/state/services/productApi'
-import { useAppSelector } from '@/state/store'
 import { ProductType } from '@/types'
 import useGetParams from './useGetParams'
 
 export default function useFilter() {
-  const stateData = useAppSelector((state) => state.filter)
   const { data, isLoading } = useGetAllProductsQuery(null)
 
-  const { q, category, rating, price } = useGetParams()
-
+  const { q, category, rating, price, sort } = useGetParams()
   const products = data?.products
 
   const filteredData = products
@@ -36,8 +33,8 @@ export default function useFilter() {
       // Add more filters as needed
       return true
     })
-    .sort((a, b) => {
-      switch (stateData.sort) {
+    .sort((a: ProductType, b: ProductType) => {
+      switch (sort) {
         case SORT_TYPE.PRICE_HIGH_TO_LOW:
           return b.price - a.price
         case SORT_TYPE.PRICE_LOW_TO_HIGH:

@@ -5,9 +5,8 @@ import {
   decrementCartItem,
   removeFromCart,
 } from '@/state/slices/cartSlice'
-import { sort } from '@/state/slices/filtersSlice'
 import { useAppDispatch } from '@/state/store'
-import { CartType } from '@/types'
+import { CartType, ProductType } from '@/types'
 
 export default function useHandleDispatch() {
   const dispatch = useAppDispatch()
@@ -29,7 +28,10 @@ export default function useHandleDispatch() {
   }
 
   const handleSort = (sortType: string) => {
-    dispatch(sort(sortType))
+    setSearchParams((prev) => {
+      prev.set('sort', sortType)
+      return prev
+    })
   }
 
   const handleSearchQuery = (query: string) => {
@@ -39,7 +41,7 @@ export default function useHandleDispatch() {
     })
   }
 
-  const handleAddToCart = (data: CartType) => {
+  const handleAddToCart = (data: ProductType) => {
     dispatch(addToCart(data))
   }
 
@@ -65,6 +67,7 @@ export default function useHandleDispatch() {
       prev.delete('category')
       prev.delete('rating')
       prev.delete('price')
+      prev.delete('sort')
       return prev
     })
   }

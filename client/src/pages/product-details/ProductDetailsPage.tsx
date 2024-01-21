@@ -1,16 +1,18 @@
 import { Link, useParams } from 'react-router-dom'
 
-import { useState } from 'react'
 import useHandleDispatch from '@/hooks/useHandleDispatch'
 import { useGetProductByIdQuery } from '@/state/services/productApi'
+import { useState } from 'react'
 
 export default function ProductDetailsPage() {
-  const [isAddedToCart, setIsAddedToCart] = useState(false)
+  const [isAddedToCart] = useState(false)
   const { id } = useParams()
   const { handleAddToCart } = useHandleDispatch()
 
-  const { data } = useGetProductByIdQuery(String(id))
-  console.log(data)
+  const { data, isFetching } = useGetProductByIdQuery(String(id))
+
+  if (isFetching) return <h1>Loading...</h1>
+
   return (
     <div style={{ display: 'flex', gap: '1rem' }}>
       <div>
@@ -28,7 +30,7 @@ export default function ProductDetailsPage() {
           <>
             <button
               onClick={() => {
-                handleAddToCart(data)
+                data && handleAddToCart(data)
               }}
             >
               Add to Cart
