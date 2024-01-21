@@ -1,4 +1,4 @@
-import { CartType } from '../types'
+import type { CartType } from '@/types'
 
 export const totalCartPrice = (cartData: CartType[]) => {
   let cartPrice = 0

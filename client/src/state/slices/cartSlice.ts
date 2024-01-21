@@ -1,5 +1,5 @@
-import { CartType } from '@/types'
-import { PayloadAction, createSlice, nanoid } from '@reduxjs/toolkit'
+import type { CartType } from '@/types'
+import { createSlice, nanoid } from '@reduxjs/toolkit'
 
 const initialState = JSON.parse(localStorage.getItem('cart') || '[]')
 
@@ -29,7 +29,7 @@ const cartSlice = createSlice({
       }
       localStorage.setItem('cart', JSON.stringify(state))
     },
-    removeFromCart(state, action: PayloadAction<string>) {
+    removeFromCart(state, action) {
       const newState = state.filter(
         (item: CartType) => item.cartItemId !== action.payload
       )

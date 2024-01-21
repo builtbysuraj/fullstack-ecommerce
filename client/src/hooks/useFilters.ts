@@ -1,6 +1,6 @@
 import { SORT_TYPE } from '@/constants/filterConstants'
 import { useGetAllProductsQuery } from '@/state/services/productApi'
-import { ProductType } from '@/types'
+import type { ProductType } from '@/types'
 import useGetParams from './useGetParams'
 
 export default function useFilter() {

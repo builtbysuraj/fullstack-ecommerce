@@ -1,5 +1,7 @@
-import { totalCartPrice } from '@/utils'
 import axios from 'axios'
+
+import { totalCartPrice } from '@/utils'
+import styles from './PlaceOrder.module.css'
 
 type Props = {
   cartData: []
@@ -39,7 +41,7 @@ export default function PlaceOrder({ cartData }: Props) {
   }
 
   return (
-    <div className="">
+    <div className={styles.placeOrder}>
       <button onClick={handleCheckout}>PLACE ORDER</button>
     </div>
   )

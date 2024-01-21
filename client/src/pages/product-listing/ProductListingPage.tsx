@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 
 import useFilter from '@/hooks/useFilters'
 import { SidebarFilters } from '@/layouts'
-import { ProductType } from '@/types'
+import type { ProductType } from '@/types'
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
 

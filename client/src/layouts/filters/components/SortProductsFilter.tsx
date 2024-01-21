@@ -1,5 +1,5 @@
+import Input from '@/components/ui/Input'
 import { SORT_TYPE } from '@/constants/filterConstants'
-import { Typography } from '@mui/material'
 
 type Props = {
   searchParams: URLSearchParams
@@ -11,42 +11,33 @@ export default function SortProductsFilter({
   handleSort,
 }: Props) {
   const sort = searchParams.get('sort') || ''
+
+  const sortItems = [
+    { value: SORT_TYPE.PRICE_HIGH_TO_LOW, label: 'Price high to low' },
+    { value: SORT_TYPE.PRICE_LOW_TO_HIGH, label: 'Price low to high' },
+    { value: SORT_TYPE.RATING_HIGH_TO_LOW, label: 'Rating High To Low' },
+  ]
+
   return (
-    <>
-      <Typography component="label" fontWeight="bold" id="sort">
-        Sort
-      </Typography>
+    <section>
+      <h4>Sort</h4>
       <form>
-        <input
-          type="radio"
-          name="sort"
-          id="Sort by high to low price"
-          value={SORT_TYPE.PRICE_HIGH_TO_LOW}
-          onChange={(e) => handleSort(e.target.value)}
-          checked={sort === SORT_TYPE.PRICE_HIGH_TO_LOW}
-        />
-        <label htmlFor="Sort by high to low price">Price high to low</label>
-        <br />
-        <input
-          type="radio"
-          name="sort"
-          id="Sort by low to high price"
-          value={SORT_TYPE.PRICE_LOW_TO_HIGH}
-          onChange={(e) => handleSort(e.target.value)}
-          checked={sort === SORT_TYPE.PRICE_LOW_TO_HIGH}
-        />
-        <label htmlFor="Sort by low to high price">Price low to high</label>
-        <br />
-        <input
-          type="radio"
-          name="sort"
-          id="Rating High To Low"
-          value={SORT_TYPE.RATING_HIGH_TO_LOW}
-          onChange={(e) => handleSort(e.target.value)}
-          checked={sort === SORT_TYPE.RATING_HIGH_TO_LOW}
-        />
-        <label htmlFor="Rating High To Low">Rating High To Low</label> <br />
+        {sortItems.map((item) => (
+          <div key={item.value}>
+            <Input
+              type="radio"
+              id={item.label}
+              checked={sort === item.value}
+              onChange={(event) => handleSort(event.target.value)}
+              name="sort"
+              label={item.label}
+              value={item.value}
+            />
+            <br />
+          </div>
+        ))}
+        <hr />
       </form>
-    </>
+    </section>
   )
 }

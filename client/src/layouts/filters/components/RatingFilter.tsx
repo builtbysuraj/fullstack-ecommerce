@@ -1,5 +1,5 @@
+import Input from '@/components/ui/Input'
 import { RATING_TYPE } from '@/constants/filterConstants'
-import { FormControlLabel, Radio, RadioGroup, Typography } from '@mui/material'
 
 type Props = {
   searchParams: URLSearchParams
@@ -12,38 +12,30 @@ export default function RatingFilter({
 }: Props) {
   const rating = searchParams.get('rating') || ''
 
+  const ratingItems = [
+    { value: RATING_TYPE.FOUR_AND_UP, label: '4 & Up' },
+    { value: RATING_TYPE.THREE_AND_UP, label: '3 & Up' },
+    { value: RATING_TYPE.TWO_AND_UP, label: '2 & Up' },
+    { value: RATING_TYPE.ONE_AND_UP, label: '1 & Up' },
+  ]
+
   return (
-    <>
-      <Typography component="label" fontWeight="bold" id="rating">
-        Customer Review
-      </Typography>
-      <RadioGroup
-        aria-labelledby="rating"
-        name="rating filters"
-        value={rating}
-        onChange={(e) => handleFilterRating(e.target.value)}
-      >
-        <FormControlLabel
-          value={RATING_TYPE.FOUR_AND_UP}
-          control={<Radio />}
-          label="4 & Up"
-        />
-        <FormControlLabel
-          value={RATING_TYPE.THREE_AND_UP}
-          control={<Radio />}
-          label="3 & Up"
-        />
-        <FormControlLabel
-          value={RATING_TYPE.TWO_AND_UP}
-          control={<Radio />}
-          label="2 & Up"
-        />
-        <FormControlLabel
-          value={RATING_TYPE.ONE_AND_UP}
-          control={<Radio />}
-          label="1 & Up"
-        />
-      </RadioGroup>
-    </>
+    <section>
+      <h4>Customer Review</h4>
+      {ratingItems.map((item) => (
+        <div key={item.value}>
+          <Input
+            type="radio"
+            id={item.label}
+            checked={rating === item.value}
+            onChange={(event) => handleFilterRating(event.target.value)}
+            name="sort"
+            label={item.label}
+            value={item.value}
+          />
+        </div>
+      ))}
+      <hr />
+    </section>
   )
 }
