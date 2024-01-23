@@ -1,4 +1,3 @@
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { createRoot } from 'react-dom/client'
 import { Provider } from 'react-redux'
 import { RouterProvider } from 'react-router-dom'
@@ -13,12 +12,8 @@ if (process.env.NODE_ENV === 'production') {
   console.error = () => {}
 }
 
-const queryClient = new QueryClient()
-
 createRoot(document.querySelector('#root') as HTMLElement).render(
   <Provider store={store}>
-    <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
-    </QueryClientProvider>
+    <RouterProvider router={router} />
   </Provider>
 )
