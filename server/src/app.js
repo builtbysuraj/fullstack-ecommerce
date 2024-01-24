@@ -17,7 +17,7 @@ app.use(express.static('public'))
 app.use(cookieParser())
 
 // Routes
-import { Payment } from './Models/payment.model.js'
+import { Payment } from './models/payment.model.js'
 import paymentRoute from './routes/payment.routes.js'
 
 app.use('/api/v1', paymentRoute)

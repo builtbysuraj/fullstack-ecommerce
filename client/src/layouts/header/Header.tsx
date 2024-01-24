@@ -1,18 +1,20 @@
-import { Link, useSearchParams } from 'react-router-dom'
+import { memo } from 'react'
+import { Link } from 'react-router-dom'
 
 import cart from '@/assets/img/cart.svg'
 import search from '@/assets/img/search.svg'
+import Input from '@/components/ui/Input'
+import useGetParams from '@/hooks/useGetParams'
 import useHandleDispatch from '@/hooks/useHandleDispatch'
 import { useAppSelector } from '@/state/store'
 import styles from './Header.module.css'
 import flipkart from '/flipkart.png'
 
-export default function Header() {
+function Header() {
   const cartData = useAppSelector((state) => state.cart)
-  const searchParams = useSearchParams()[0]
   const { handleSearchQuery } = useHandleDispatch()
-  const q = searchParams.get('q') || ''
-
+  const { q } = useGetParams()
+  console.log('Header')
   return (
     <header className={styles.headerContainer}>
       <div className={styles.headerWrapper}>
@@ -22,7 +24,8 @@ export default function Header() {
           </Link>
         </div>
         <div className={styles.inputWrapper}>
-          <input
+          <Input
+            type="text"
             className={styles.headerInput}
             placeholder="Search for products, brands and more"
             value={q}
@@ -59,3 +62,6 @@ export default function Header() {
     </header>
   )
 }
+
+const MemoizedHeader = memo(Header)
+export default MemoizedHeader

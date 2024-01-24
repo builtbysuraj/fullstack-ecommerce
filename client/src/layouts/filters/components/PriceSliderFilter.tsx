@@ -1,24 +1,18 @@
-import { Box, Slider, Typography } from '@mui/material'
+import Slider from '@mui/material/Slider'
+import { memo } from 'react'
 
-type Props = {
-  searchParams: URLSearchParams
-  handlePriceRange: (arg0: Event, arg1: number | number[]) => void
-}
+import useGetParams from '@/hooks/useGetParams'
+import useHandleDispatch from '@/hooks/useHandleDispatch'
 
-export default function PriceSliderFilter({
-  searchParams,
-  handlePriceRange,
-}: Props) {
-  const price = searchParams.get('price')?.split('-').map(Number) || [10, 2000]
-
+function PriceSliderFilter() {
+  const { handlePriceRange } = useHandleDispatch()
+  const { price } = useGetParams()
+  console.log('PriceSliderFilter')
   return (
-    <>
-      <Typography fontWeight="bold">Price</Typography>
-      <Typography fontWeight="bold">
-        <br />
-        {`$${price[0]} -  $${price[1]}`}
-      </Typography>
-      <Box sx={{ m: 2 }}>
+    <section>
+      <h4>Price</h4>
+      <h4>{`$${price[0]} -  $${price[1]}`}</h4>
+      <div style={{ margin: '1rem' }}>
         <Slider
           value={price}
           onChange={handlePriceRange}
@@ -27,7 +21,10 @@ export default function PriceSliderFilter({
           min={10}
           step={100}
         />
-      </Box>
-    </>
+      </div>
+    </section>
   )
 }
+
+const MemoizedPriceSliderFilter = memo(PriceSliderFilter)
+export default MemoizedPriceSliderFilter

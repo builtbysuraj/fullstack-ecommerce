@@ -1,5 +1,5 @@
 import crypto from 'crypto'
-import { Payment } from '../Models/payment.model.js'
+import { Payment } from '../models/payment.model.js'
 import { ENV } from '../conf/conf.js'
 import { CLIENT_BASE_URL } from '../constants.js'
 import { razorpayInstance } from '../index.js'

@@ -1,13 +1,15 @@
+import { Divider } from '@mui/material'
+import { memo } from 'react'
+import { Link } from 'react-router-dom'
+
 import gift from '@/assets/img/gift.svg'
 import paymentMethods from '@/assets/img/payment-method.svg'
 import question from '@/assets/img/question.svg'
 import seller from '@/assets/img/seller.svg'
 import star from '@/assets/img/star.svg'
-import { Divider } from '@mui/material'
-import { Link } from 'react-router-dom'
 import styles from './Footer.module.css'
 
-export default function Footer() {
+function Footer() {
   const about = [
     'Contact Us',
     'About Us',
@@ -36,6 +38,7 @@ export default function Footer() {
     'Redressal',
     ' EPR Compliance',
   ]
+  console.log('Footer')
   const social = ['Facebook', 'Twitter', 'YouTube']
   return (
     <footer className={styles.footerContainer}>
@@ -145,3 +148,6 @@ export default function Footer() {
     </footer>
   )
 }
+
+const MemoizedFooter = memo(Footer)
+export default MemoizedFooter

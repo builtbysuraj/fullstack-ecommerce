@@ -1,7 +1,12 @@
-import useHandleDispatch from '@/hooks/useHandleDispatch'
-import { FormControlLabel, Radio, RadioGroup, Typography } from '@mui/material'
+import { memo } from 'react'
 
-const data = {
+import Input from '@/components/ui/Input'
+import useGetParams from '@/hooks/useGetParams'
+import useHandleDispatch from '@/hooks/useHandleDispatch'
+
+type CategoryType = Record<string, string>
+
+const data: CategoryType = {
   Smartphones: 'smartphones',
   Laptops: 'laptops',
   Fragrances: 'fragrances',
@@ -24,47 +29,28 @@ const data = {
   Lighting: 'lighting',
 }
 
-type Props = {
-  searchParams: URLSearchParams
-}
-
-export default function CategoryFilter({ searchParams }: Props) {
-  // const formattedCategories = categories.map((category) =>
-  //   category.includes('-')
-  //     ? category
-  //         .split('-')
-  //         .map(
-  //           (splitedWord) =>
-  //             splitedWord.charAt(0).toUpperCase() + splitedWord.slice(1)
-  //         )
-  //         .join(' ')
-  //     : category.charAt(0).toUpperCase() + category.slice(1)
-  // )
-  // console.log(formattedCategories)
+function CategoryFilter() {
   const { handleCategoryFilter } = useHandleDispatch()
-  const category = searchParams.get('category') || ''
-
+  const { category: categoryParam } = useGetParams()
+  console.log('CategoryFilter')
   return (
-    <>
-      <Typography component="label" fontWeight="bold" id="category">
-        Categories
-      </Typography>
-      <RadioGroup
-        aria-labelledby="category"
-        name="categories"
-        value={category}
-        onChange={(e) => handleCategoryFilter(e.target.value)}
-      >
-        {Object.keys(data).map((category, index) => (
-          <FormControlLabel
-            // @ts-expect-error - type 'string' can't be used to index type
+    <section>
+      <h4>Categories</h4>
+      {Object.keys(data).map((category) => (
+        <div key={category}>
+          <Input
+            type="radio"
             value={data[category]}
-            key={index}
-            control={<Radio />}
             label={category}
+            id={category}
+            onChange={(e) => handleCategoryFilter(e.target.value)}
+            checked={categoryParam === data[category]}
           />
-        ))}
-      </RadioGroup>
-    </>
+        </div>
+      ))}
+    </section>
   )
 }
+
+const MemoizedCategoryFilter = memo(CategoryFilter)
+export default MemoizedCategoryFilter
