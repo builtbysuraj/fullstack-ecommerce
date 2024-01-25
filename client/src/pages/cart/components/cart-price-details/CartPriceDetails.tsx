@@ -1,11 +1,8 @@
 import { Divider } from '@mui/material'
-import classNames from 'classnames/bind'
 
-import { CartType } from '@/types'
+import type { CartType } from '@/types'
 import { totalCartPrice } from '@/utils'
 import styles from './CartPriceDetails.module.css'
-
-const cx = classNames.bind(styles)
 
 type Props = {
   cartData: CartType[]
@@ -13,7 +10,7 @@ type Props = {
 
 export default function CartPriceDetails({ cartData }: Props) {
   return (
-    <div className={cx('cart-price')}>
+    <div className={styles.cartPrice}>
       <span>PRICE DETAILS</span>
       <Divider />
       <section>

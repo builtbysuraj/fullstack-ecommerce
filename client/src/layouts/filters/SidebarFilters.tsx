@@ -1,53 +1,44 @@
-import { Box, FormControl, Typography } from '@mui/material'
-import { useSearchParams } from 'react-router-dom'
+import { memo } from 'react'
 
-import useHandleDispatch from '@/hooks/useHandleDispatch'
+import AppliedFilters from './components/applied-filters/AppliedFilters'
 import CategoryFilter from './components/CategoryFilter'
+import ClearFilter from './components/clear-filter/ClearFilter'
 import PriceSliderFilter from './components/PriceSliderFilter'
 import RatingFilter from './components/RatingFilter'
 import SortProductsFilter from './components/SortProductsFilter'
 
-export default function SidebarFilters() {
-  const searchParams = useSearchParams()[0]
-  const {
-    handleFilterRating,
-    handleSort,
-    handlePriceRange,
-    handleClearFilter,
-  } = useHandleDispatch()
-
+function SidebarFilters() {
   return (
-    <>
-      <Typography component="h1" variant="h5" fontWeight="bold">
-        Filters
-      </Typography>
-      <Box display="flex" justifyContent="center" flexDirection="column">
-        {/* Clear Filters */}
-        <button onClick={handleClearFilter}>Clear Filters</button>
-        <br />
+    <div
+      style={{
+        background: 'white',
+        padding: '0.8rem',
+      }}
+      className="sidebar"
+    >
+      <h3>Filters</h3>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          flexDirection: 'column',
+        }}
+      >
+        <ClearFilter />
 
-        {/* Price Filter */}
-        <PriceSliderFilter
-          searchParams={searchParams}
-          handlePriceRange={handlePriceRange}
-        />
-        <FormControl>
-          {/* Sort products */}
-          <SortProductsFilter
-            searchParams={searchParams}
-            handleSort={handleSort}
-          />
+        <AppliedFilters />
 
-          {/* Ratings filter */}
-          <RatingFilter
-            searchParams={searchParams}
-            handleFilterRating={handleFilterRating}
-          />
-        </FormControl>
+        <PriceSliderFilter />
 
-        {/* Category Filters */}
-        <CategoryFilter searchParams={searchParams} />
-      </Box>
-    </>
+        <SortProductsFilter />
+
+        <RatingFilter />
+
+        <CategoryFilter />
+      </div>
+    </div>
   )
 }
+
+const MemoizedSidebarFilters = memo(SidebarFilters)
+export default MemoizedSidebarFilters

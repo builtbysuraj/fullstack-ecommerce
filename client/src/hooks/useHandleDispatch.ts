@@ -6,7 +6,7 @@ import {
   removeFromCart,
 } from '@/state/slices/cartSlice'
 import { useAppDispatch } from '@/state/store'
-import { CartType, ProductType } from '@/types'
+import type { CartType, ProductType } from '@/types'
 
 export default function useHandleDispatch() {
   const dispatch = useAppDispatch()
