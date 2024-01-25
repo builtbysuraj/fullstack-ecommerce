@@ -14,7 +14,6 @@ const sortItems = [
 function SortProductsFilter() {
   const { sort } = useGetParams()
   const { handleSort } = useHandleDispatch()
-  console.log('SortProductsFilter')
   return (
     <section>
       <h4>Sort</h4>

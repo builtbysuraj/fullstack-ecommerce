@@ -32,7 +32,6 @@ const data: CategoryType = {
 function CategoryFilter() {
   const { handleCategoryFilter } = useHandleDispatch()
   const { category: categoryParam } = useGetParams()
-  console.log('CategoryFilter')
   return (
     <section>
       <h4>Categories</h4>

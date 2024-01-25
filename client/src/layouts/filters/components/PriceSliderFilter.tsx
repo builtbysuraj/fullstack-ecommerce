@@ -7,12 +7,11 @@ import useHandleDispatch from '@/hooks/useHandleDispatch'
 function PriceSliderFilter() {
   const { handlePriceRange } = useHandleDispatch()
   const { price } = useGetParams()
-  console.log('PriceSliderFilter')
   return (
     <section>
       <h4>Price</h4>
       <h4>{`$${price[0]} -  $${price[1]}`}</h4>
-      <div style={{ margin: '1rem' }}>
+      <div>
         <Slider
           value={price}
           onChange={handlePriceRange}
@@ -20,6 +19,7 @@ function PriceSliderFilter() {
           max={2000}
           min={10}
           step={100}
+          size="small"
         />
       </div>
     </section>

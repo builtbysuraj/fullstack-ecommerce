@@ -8,7 +8,9 @@ type Props = {
 export default function Products({ filteredData }: Props) {
   return (
     <div>
-      {filteredData?.map((product) => <ProductCard product={product} />)}
+      {filteredData?.map((product) => (
+        <ProductCard product={product} key={product.id} />
+      ))}
     </div>
   )
 }

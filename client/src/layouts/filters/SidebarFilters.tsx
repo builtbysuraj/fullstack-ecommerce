@@ -1,16 +1,22 @@
 import { memo } from 'react'
 
+import AppliedFilters from './components/applied-filters/AppliedFilters'
 import CategoryFilter from './components/CategoryFilter'
-import ClearFilter from './components/ClearFilter'
+import ClearFilter from './components/clear-filter/ClearFilter'
 import PriceSliderFilter from './components/PriceSliderFilter'
 import RatingFilter from './components/RatingFilter'
 import SortProductsFilter from './components/SortProductsFilter'
 
 function SidebarFilters() {
-  console.log('SidebarFilters')
   return (
-    <>
-      <h2>Filters</h2>
+    <div
+      style={{
+        background: 'white',
+        padding: '0.8rem',
+      }}
+      className="sidebar"
+    >
+      <h3>Filters</h3>
       <div
         style={{
           display: 'flex',
@@ -18,21 +24,19 @@ function SidebarFilters() {
           flexDirection: 'column',
         }}
       >
-        {/* Clear Filters */}
         <ClearFilter />
 
-        {/* Price Filter */}
+        <AppliedFilters />
+
         <PriceSliderFilter />
-        {/* Sort products */}
+
         <SortProductsFilter />
 
-        {/* Ratings filter */}
         <RatingFilter />
 
-        {/* Category Filters */}
         <CategoryFilter />
       </div>
-    </>
+    </div>
   )
 }
 

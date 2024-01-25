@@ -6,16 +6,15 @@ import useGetParams from '@/hooks/useGetParams'
 import useHandleDispatch from '@/hooks/useHandleDispatch'
 
 const ratingItems = [
-  { value: RATING_TYPE.FOUR_AND_UP, label: '4 & Up' },
-  { value: RATING_TYPE.THREE_AND_UP, label: '3 & Up' },
-  { value: RATING_TYPE.TWO_AND_UP, label: '2 & Up' },
-  { value: RATING_TYPE.ONE_AND_UP, label: '1 & Up' },
+  { value: RATING_TYPE.FOUR_AND_UP, label: '4★ & above' },
+  { value: RATING_TYPE.THREE_AND_UP, label: '3★ & above' },
+  { value: RATING_TYPE.TWO_AND_UP, label: '2★ & above' },
+  { value: RATING_TYPE.ONE_AND_UP, label: '1★ & above' },
 ]
 
 function RatingFilter() {
   const { rating } = useGetParams()
   const { handleFilterRating } = useHandleDispatch()
-  console.log('RatingFilter')
   return (
     <section>
       <h4>Customer Review</h4>

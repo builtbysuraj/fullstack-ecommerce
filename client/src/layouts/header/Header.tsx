@@ -14,7 +14,6 @@ function Header() {
   const cartData = useAppSelector((state) => state.cart)
   const { handleSearchQuery } = useHandleDispatch()
   const { q } = useGetParams()
-  console.log('Header')
   return (
     <header className={styles.headerContainer}>
       <div className={styles.headerWrapper}>

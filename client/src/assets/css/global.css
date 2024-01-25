@@ -1,0 +1,22 @@
+.AppContainer {
+  background-color: #f1f3f6;
+  z-index: -1;
+  min-height: 100vh;
+}
+
+hr {
+  border-top: 1px solid rgba(96, 96, 96, 0.217);
+  margin: 15px 0 0 0;
+}
+
+.sidebar section {
+  margin: 10px 0;
+}
+
+.sidebar section input {
+  margin: 8px 0;
+}
+
+.sidebar section label {
+  padding: 0 10px;
+}

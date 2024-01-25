@@ -1,11 +1,13 @@
 import useHandleDispatch from '@/hooks/useHandleDispatch'
+import styles from './ClearFilter.module.css'
 
 export default function ClearFilter() {
   const { handleClearFilter } = useHandleDispatch()
-  console.log('ClearFilter')
   return (
     <section>
-      <button onClick={handleClearFilter}>Clear Filters</button>
+      <button className={styles.clearBtn} onClick={handleClearFilter}>
+        CLEAR ALL
+      </button>
     </section>
   )
 }

@@ -38,7 +38,6 @@ function Footer() {
     'Redressal',
     ' EPR Compliance',
   ]
-  console.log('Footer')
   const social = ['Facebook', 'Twitter', 'YouTube']
   return (
     <footer className={styles.footerContainer}>

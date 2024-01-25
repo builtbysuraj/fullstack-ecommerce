@@ -1,5 +1,5 @@
 import { ProductType } from '@/types'
-import { Paper } from '@mui/material'
+import Paper from '@mui/material/Paper'
 import { Link } from 'react-router-dom'
 
 type Props = {
@@ -7,7 +7,6 @@ type Props = {
 }
 
 export default function ProductCard({ product }: Props) {
-  console.log(product)
   return (
     <div>
       <Link key={product.id} to={`/products/${product.id}`}>
@@ -16,10 +15,10 @@ export default function ProductCard({ product }: Props) {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            // margin: 2,
-            p: 2,
-            mb: 1,
+            p: 3,
+            mb: 0.1,
           }}
+          elevation={0}
         >
           <div style={{ display: 'flex', alignItems: 'center' }}>
             <img
@@ -30,7 +29,7 @@ export default function ProductCard({ product }: Props) {
             />
             <h3>{product.title}</h3>
             <h3>{product.rating}</h3>
-            {/* <p>{product.description}</p> */}
+            <p>{product.description}</p>
           </div>
 
           <div>
