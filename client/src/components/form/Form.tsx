@@ -15,21 +15,21 @@ export default function From({
   promptLinkText,
 }: FormProps) {
   return (
-    <div className={styles.loginContainer}>
+    <div className={styles.formContainer}>
       <div className={styles.left}>
-        <div className={styles.loginTitle}>
+        <div className={styles.formTitle}>
           <span>{mode}</span>
         </div>
-        <div className={styles.loginDesc}>
+        <div className={styles.formDesc}>
           <p>Get access to your Orders,</p>
           <p>Wishlist and Recommendations</p>
         </div>
       </div>
       <div className={styles.right}>
-        <form className={styles.loginForm}>
+        <form className={styles.form}>
           <input type="text" placeholder="Enter Email/Username" />
           <input type="password" placeholder="Password" />
-          <small>
+          <small className={styles.fromSmall}>
             By continuing, you agree to Flipkart's
             <span className={styles.demoLink}> Terms of Use </span>
             and

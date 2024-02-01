@@ -1,5 +1,7 @@
 import { memo } from 'react'
 import { useSearchParams } from 'react-router-dom'
+
+import { RATING_ITEMS, SORT_ITEMS } from '@/constants/filterConstants'
 import styles from './AppliedFilters.module.css'
 
 function AppliedFilters() {
@@ -15,6 +17,18 @@ function AppliedFilters() {
     setSearchParams(searchParams)
   }
 
+  const getLabel = (key: string, value: string) => {
+    let items: { value: string; label: string }[] = []
+
+    if (key === 'sort') {
+      items = SORT_ITEMS
+    } else if (key === 'rating') {
+      items = RATING_ITEMS
+    }
+    const item = items.find((item) => item.value === value)
+    return item ? item.label : value
+  }
+
   return (
     <section>
       <ul className={styles.filterList}>
@@ -25,7 +39,7 @@ function AppliedFilters() {
               key={key}
               onClick={() => handleRemoveFilter(key)}
             >
-              ✕ {value}
+              ✕ {getLabel(key, value)}
             </li>
           ))
         ) : (

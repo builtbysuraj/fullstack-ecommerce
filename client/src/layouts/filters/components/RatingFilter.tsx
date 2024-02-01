@@ -1,16 +1,9 @@
 import { memo } from 'react'
 
 import Input from '@/components/ui/Input'
-import { RATING_TYPE } from '@/constants/filterConstants'
+import { RATING_ITEMS } from '@/constants/filterConstants'
 import useGetParams from '@/hooks/useGetParams'
 import useHandleDispatch from '@/hooks/useHandleDispatch'
-
-const ratingItems = [
-  { value: RATING_TYPE.FOUR_AND_UP, label: '4★ & above' },
-  { value: RATING_TYPE.THREE_AND_UP, label: '3★ & above' },
-  { value: RATING_TYPE.TWO_AND_UP, label: '2★ & above' },
-  { value: RATING_TYPE.ONE_AND_UP, label: '1★ & above' },
-]
 
 function RatingFilter() {
   const { rating } = useGetParams()
@@ -18,7 +11,7 @@ function RatingFilter() {
   return (
     <section>
       <h4>Customer Review</h4>
-      {ratingItems.map((item) => (
+      {RATING_ITEMS.map((item) => (
         <div key={item.value}>
           <Input
             type="radio"

@@ -61,6 +61,14 @@ export default function useHandleDispatch() {
     })
   }
 
+  const handleBrandFilter = (brand: string) => {
+    setSearchParams((prev) => {
+      prev.set('brand', brand)
+      prev.delete('q')
+      return prev
+    })
+  }
+
   const handleClearFilter = () => {
     setSearchParams((prev) => {
       prev.delete('q')
@@ -68,6 +76,7 @@ export default function useHandleDispatch() {
       prev.delete('rating')
       prev.delete('price')
       prev.delete('sort')
+      prev.delete('brand')
       return prev
     })
   }
@@ -81,6 +90,7 @@ export default function useHandleDispatch() {
     handlePriceRange,
     handleSearchQuery,
     handleCategoryFilter,
+    handleBrandFilter,
     handleClearFilter,
   }
 }

@@ -6,7 +6,7 @@ import useGetParams from './useGetParams'
 export default function useFilter() {
   const { data, isLoading } = useGetAllProductsQuery(null)
 
-  const { q, category, rating, price, sort } = useGetParams()
+  const { q, category, brand, rating, price, sort } = useGetParams()
   const products = data?.products
 
   const filteredData = products
@@ -27,8 +27,11 @@ export default function useFilter() {
       )
         return false
 
-      // category filter
+      // Category filter
       if (category && !(item.category === category)) return false
+
+      // Brand filter
+      if (brand && !(item.brand === brand)) return false
 
       // Add more filters as needed
       return true
