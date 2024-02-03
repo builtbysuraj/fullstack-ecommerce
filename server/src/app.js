@@ -20,6 +20,10 @@ app.use(cookieParser())
 import { Payment } from './models/payment.model.js'
 import paymentRoute from './routes/payment.routes.js'
 
+app.get('/api/status', (req, res) => {
+  res.json({ status: true, message: 'Server is running' })
+})
+
 app.use('/api/v1', paymentRoute)
 
 app.get('/api/v1/get-key', (req, res) =>
@@ -33,10 +37,8 @@ app.get('/verify-payment', async (req, res) => {
     const payment = await Payment.findOne({ razorpay_payment_id: paymentId })
 
     if (payment) {
-      // console.log(payment)
       res.json({ success: true })
     } else {
-      // console.log(payment)
       res.json({ success: false })
     }
   } catch (error) {

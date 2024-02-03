@@ -2,14 +2,14 @@ import Paper from '@mui/material/Paper'
 import Rating from '@mui/material/Rating'
 import { Link } from 'react-router-dom'
 
-import { ProductType } from '@/types'
+import type { ProductType } from '@/types'
 import styles from './ProductCard.module.css'
 
-type Props = {
+type ProductProps = {
   product: ProductType
 }
 
-export default function ProductCard({ product }: Props) {
+export default function ProductCard({ product }: ProductProps) {
   return (
     <div>
       <Link key={product.id} to={`/products/${product.id}`}>

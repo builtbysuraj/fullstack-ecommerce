@@ -3,7 +3,7 @@ import { useAppDispatch } from '@/state/store'
 import { useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
 
-export default function PaymentSuccess() {
+export default function PaymentSuccessPage() {
   const seachQuery = useSearchParams()[0]
   const referenceNum = seachQuery.get('reference')
 

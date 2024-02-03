@@ -13,6 +13,9 @@ import router from './routes'
 // Store
 import store from './state/store'
 
+// Context
+import ServerStatusProvider from './context/ServerStatusProvider'
+
 if (process.env.NODE_ENV === 'production') {
   console.log = () => {}
   console.warn = () => {}
@@ -21,6 +24,8 @@ if (process.env.NODE_ENV === 'production') {
 
 createRoot(document.querySelector('#root')!).render(
   <Provider store={store}>
-    <RouterProvider router={router} />
+    <ServerStatusProvider>
+      <RouterProvider router={router} />
+    </ServerStatusProvider>
   </Provider>
 )

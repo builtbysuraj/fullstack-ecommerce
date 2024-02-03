@@ -9,7 +9,7 @@ import {
   CartPage,
   HomePage,
   LoginPage,
-  PaymentSuccess,
+  PaymentSuccessPage,
   ProductDetailsPage,
   ProductListingPage,
   SignUpPage,
@@ -24,7 +24,7 @@ const router = createBrowserRouter(
       <Route path="/cart" element={<CartPage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/signup" element={<SignUpPage />} />
-      <Route path="/payment-success" element={<PaymentSuccess />} />
+      <Route path="/payment-success" element={<PaymentSuccessPage />} />
     </Route>
   )
 )

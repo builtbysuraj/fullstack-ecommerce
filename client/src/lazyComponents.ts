@@ -10,15 +10,15 @@ const ProductListingPage = lazy(
 )
 const LoginPage = lazy(() => import('./pages/login/LoginPage'))
 const SignUpPage = lazy(() => import('./pages/signup/SignUpPage'))
-const PaymentSuccess = lazy(
-  () => import('./pages/payment-success/PaymentSuccess')
+const PaymentSuccessPage = lazy(
+  () => import('./pages/payment-success/PaymentSuccessPage')
 )
 
 export {
   CartPage,
   HomePage,
   LoginPage,
-  PaymentSuccess,
+  PaymentSuccessPage,
   ProductDetailsPage,
   ProductListingPage,
   SignUpPage,

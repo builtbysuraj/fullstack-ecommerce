@@ -1,12 +1,13 @@
 import { memo } from 'react'
-
-import CategoryFilter from './components/CategoryFilter'
-import PriceSliderFilter from './components/PriceSliderFilter'
-import RatingFilter from './components/RatingFilter'
-import SortProductsFilter from './components/SortProductsFilter'
-import AppliedFilters from './components/applied-filters/AppliedFilters'
-import BrandFilter from './components/brand-filter/BrandFilter'
-import ClearFilter from './components/clear-filter/ClearFilter'
+import {
+  AppliedFilters,
+  BrandFilter,
+  CategoryFilter,
+  ClearFilter,
+  PriceSliderFilter,
+  RatingFilter,
+  SortProductsFilter,
+} from './components'
 
 function SidebarFilters() {
   return (
