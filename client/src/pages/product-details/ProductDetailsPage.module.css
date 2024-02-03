@@ -1,0 +1,30 @@
+.product-details-container {
+  display: flex;
+  min-height: 100dvh;
+  max-width: 80rem;
+  margin: 0 auto;
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.image-gallery-wrapper {
+  max-width: 40rem;
+  min-height: 30rem;
+}
+
+.go-to-cart-page,
+.add-to-cart-btn {
+  margin: 1rem 1rem;
+  padding: 1rem;
+  border: 0;
+  outline: 0;
+  background-color: var(--color-brand-orange);
+  right: 30px;
+  bottom: 20px;
+  cursor: pointer;
+  border-radius: 3px;
+  width: 15rem;
+  color: white;
+  font-size: 1rem;
+  font-weight: 500;
+}
