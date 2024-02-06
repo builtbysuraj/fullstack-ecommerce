@@ -1,4 +1,5 @@
 import { createRoot } from 'react-dom/client'
+import { Toaster } from 'react-hot-toast'
 import { Provider } from 'react-redux'
 import { RouterProvider } from 'react-router-dom'
 
@@ -25,6 +26,7 @@ if (process.env.NODE_ENV === 'production') {
 createRoot(document.querySelector('#root')!).render(
   <Provider store={store}>
     <ServerStatusProvider>
+      <Toaster />
       <RouterProvider router={router} />
     </ServerStatusProvider>
   </Provider>

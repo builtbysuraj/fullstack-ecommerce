@@ -1,4 +1,4 @@
-import { ENV } from '@/conf'
+import axios from 'axios'
 import {
   PropsWithChildren,
   createContext,
@@ -7,29 +7,38 @@ import {
   useState,
 } from 'react'
 
-export const ServerStatusContext = createContext<string | null>(null)
+import { ENV } from '@/conf'
+
+type ServerStateType = {
+  status: boolean
+  message: string
+}
+
+export const ServerStatusContext = createContext<ServerStateType | null>(null)
 
 export default function ServerStatusProvider({ children }: PropsWithChildren) {
-  const [serverStatus, setServerStatus] = useState<string | null>('')
+  const [serverStatus, setServerStatus] = useState<ServerStateType>({
+    status: false,
+    message: '',
+  })
 
   useEffect(() => {
-    const checkServerStatus = () => {
-      fetch(`${ENV.SERVER_URL}/api/status`)
-        .then((response) => response.json())
-        .then((data) => {
-          if (data.status) {
-            setServerStatus(data.message)
-          } else {
-            setServerStatus('Server is not running')
-          }
-        })
-        .catch(() => setServerStatus('Server is not running'))
+    const checkServerStatus = async () => {
+      try {
+        const { data } = await axios.get(`${ENV.SERVER_URL}/api/status`)
+
+        if (data.status) {
+          setServerStatus(data)
+        } else {
+          setServerStatus({ status: false, message: 'Server is not running' })
+        }
+      } catch (error) {
+        setServerStatus({ status: false, message: 'Wait for server to start' })
+      }
     }
 
-    // Call immediately
     checkServerStatus()
 
-    // Then call every 5 seconds
     const intervalId = setInterval(checkServerStatus, 10000)
 
     // Clear interval on component unmount
