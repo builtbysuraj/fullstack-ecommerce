@@ -1,12 +1,26 @@
 {
   "devDependencies": {
-    "husky": "^8.0.0"
+    "husky": "^9.0.10",
+    "lint-staged": "^15.2.2"
   },
   "scripts": {
-    "prepare": "husky install",
+    "prepare": "husky",
     "check-format-client": "cd client && npm run check-format",
     "check-format-server": "cd server && npm run check-format",
     "check-lint": "cd client && npm run check-lint",
     "check-types": "cd client && npm run check-types"
+  },
+  "lint-staged": {
+    "client/src/**/*.{ts,tsx}": [
+      "npm run check-format-client",
+      "npm run check-types",
+      "npm run check-lint"
+    ],
+    "client/src/**/*.{ts,tsx,css,scss}": [
+      "npm run check-format-client"
+    ],
+    "server/src/**/*.{js,jsx,css,scss}": [
+      "npm run check-format-server"
+    ]
   }
 }
