@@ -7,8 +7,8 @@ import Input from '@/components/ui/Input'
 import useGetParams from '@/hooks/useGetParams'
 import useHandleDispatch from '@/hooks/useHandleDispatch'
 import { useAppSelector } from '@/state/store'
+import flipkart from '../../assets/img/flipkart.png'
 import styles from './Header.module.css'
-import flipkart from '/flipkart.png'
 
 function Header() {
   const cartData = useAppSelector((state) => state.cart)
