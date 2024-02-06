@@ -1,11 +1,5 @@
 import axios from 'axios'
-import {
-  PropsWithChildren,
-  createContext,
-  useContext,
-  useEffect,
-  useState,
-} from 'react'
+import { PropsWithChildren, createContext, useEffect, useState } from 'react'
 
 import { ENV } from '@/conf'
 
@@ -50,15 +44,4 @@ export default function ServerStatusProvider({ children }: PropsWithChildren) {
       {children}
     </ServerStatusContext.Provider>
   )
-}
-
-// eslint-disable-next-line react-refresh/only-export-components
-export const useServerStatus = () => {
-  const context = useContext(ServerStatusContext)
-  if (context === undefined) {
-    throw new Error(
-      'useServerStatus must be used within an ServerStatusProvider'
-    )
-  }
-  return context
 }

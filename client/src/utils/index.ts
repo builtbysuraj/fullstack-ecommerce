@@ -26,3 +26,20 @@ export const getOriginalAndThumbnailImg = (images: string[]) => {
     }
   })
 }
+
+export const calculateTotalDiscount = (cartData: CartType[]): number => {
+  let totalDiscount = 0
+  for (let i = 0; i < cartData.length; i++) {
+    const discountAmount = calculateSavings(
+      cartData[i].price,
+      cartData[i].discountPercentage
+    )
+    totalDiscount += discountAmount * (cartData[i].quantity || 1)
+  }
+  return Math.round(totalDiscount)
+}
+
+function calculateSavings(price: number, discountPercentage: number): number {
+  const discountAmount = (price * discountPercentage) / 100
+  return discountAmount
+}

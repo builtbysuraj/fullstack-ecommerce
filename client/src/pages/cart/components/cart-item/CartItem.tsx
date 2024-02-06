@@ -1,5 +1,7 @@
 import useHandleDispatch from '@/hooks/useHandleDispatch'
 import type { CartType } from '@/types'
+import { cx } from '@/utils'
+import fa from '../../../../assets/img/fa.png'
 import styles from './CartItem.module.css'
 
 type CartItemProps = {
@@ -16,16 +18,26 @@ export default function CartItem({ product }: CartItemProps) {
         <div className={styles.cartImage}>
           <img width={200} src={product.thumbnail} />
         </div>
-        <div className={styles.itemMarginTop}>
-          <p>{product.title}</p>
-          <small>{product.description}</small>
-          <s>$871</s> <strong>${product.price} </strong>
-          <span> {product.discountPercentage}% Off </span>
-          <small> 3 offers available</small>
-          <br />
-          <small>Seller: Internet</small>
+        <div className={styles.itemInfo}>
+          <p className={styles.title}>{product.title}</p>
+          <span className={styles.seller}>
+            Seller:Internet
+            <span>
+              <img src={fa} width={56} alt="flipkart assured" />
+            </span>
+          </span>
+          <section className={styles.itemPriceOfferDiscount}>
+            <s>$871</s> <div className={styles.price}>${product.price}</div>
+            <span className={cx(styles.green, styles.discount)}>
+              {product.discountPercentage}% Off
+            </span>
+            <span className={styles.green}>3 offers applied</span>
+          </section>
         </div>
-        <small>Delivery by Mon Jan 15</small>
+        <span className={styles.deliveryBy}>
+          Delivery by Mon Jan 15 | <s>$3</s>{' '}
+          <span className={styles.green}>Free</span>{' '}
+        </span>
       </div>
       <div className={styles.cartItemQuantity}>
         <button

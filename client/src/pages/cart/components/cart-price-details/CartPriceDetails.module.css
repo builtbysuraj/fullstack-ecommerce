@@ -1,10 +1,9 @@
-@import '../../../../assets/css/colors.css';
-
 .cart-price {
   background-color: var(--color-white-bg);
   height: fit-content;
-  width: 40rem;
+  width: 25rem;
   padding: 1rem;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2);
 }
 
 .cart-price section {
@@ -12,4 +11,49 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.price {
+  color: #212121;
+}
+
+.cart-price-heading {
+  display: block;
+  color: #878787;
+  padding-left: 15px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.green {
+  color: #388e3c;
+}
+
+.delivery s {
+  margin: 0.5rem;
+  color: #717478;
+}
+
+.saving {
+  margin: 0.99rem 1rem 0 0.99rem;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.total-amount {
+  font-weight: 500;
+  font-size: 18px;
+  color: #212121;
+}
+
+.secure-section {
+  text-align: left;
+  color: #878787;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-weight: 500;
+  margin: 1.4rem 1rem 0 0.8rem;
 }

@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-import { useServerStatus } from '@/context/ServerStatusProvider'
+import useServerStatus from '@/hooks/useServerStatus'
 import { totalCartPrice } from '@/utils'
 import toast from 'react-hot-toast'
 import styles from './PlaceOrder.module.css'
@@ -12,11 +12,11 @@ declare global {
   }
 }
 
-type Props = {
+type CartDataProps = {
   cartData: []
 }
 
-export default function PlaceOrder({ cartData }: Props) {
+export default function PlaceOrder({ cartData }: CartDataProps) {
   const serverStatus = useServerStatus()
 
   const amount = totalCartPrice(cartData)
@@ -59,7 +59,7 @@ export default function PlaceOrder({ cartData }: Props) {
     if (serverStatus?.status)
       toast.promise(performCheckout(), {
         loading: 'Processing...',
-        success: <b>Done!</b>,
+        success: 'Done!',
         error: 'Server is not running',
       })
   }

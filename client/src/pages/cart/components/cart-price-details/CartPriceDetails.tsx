@@ -1,38 +1,56 @@
 import { Divider } from '@mui/material'
 
 import type { CartType } from '@/types'
-import { totalCartPrice } from '@/utils'
+import { calculateTotalDiscount, cx, totalCartPrice } from '@/utils'
+import shield from '../../../../assets/img/shield.svg'
 import styles from './CartPriceDetails.module.css'
 
-type Props = {
+type CartDataProps = {
   cartData: CartType[]
 }
 
-export default function CartPriceDetails({ cartData }: Props) {
+export default function CartPriceDetails({ cartData }: CartDataProps) {
   return (
-    <div className={styles.cartPrice}>
-      <span>PRICE DETAILS</span>
-      <Divider />
-      <section>
-        <span>{`Price (${cartData.length} items) `}</span>
-        <span>${`${totalCartPrice(cartData)}`}</span>
-      </section>
-      <section>
-        <span>Discount</span>
-        <span>- $134</span>
-      </section>
-      <section>
-        <span>Delivery Charges</span>
+    <div>
+      <div className={styles.cartPrice}>
+        <span className={styles.cartPriceHeading}>PRICE DETAILS</span>
+        <Divider />
+        <section className={styles.price}>
+          <span>{`Price (${cartData.length} items) `}</span>
+          <span>${`${totalCartPrice(cartData)}`}</span>
+        </section>
+        <section>
+          <span>Discount</span>
+          <span className={styles.green}>
+            − ${calculateTotalDiscount(cartData)}
+          </span>
+        </section>
+        <section className={styles.delivery}>
+          <span>Delivery Charges</span>
+          <span>
+            <s>$40</s>
+            <span className={styles.green}>Free</span>
+          </span>
+        </section>
+        <Divider />
+        <section className={styles.totalAmount}>
+          <div>Total Amount</div>
+          <span>${`${totalCartPrice(cartData)}`}</span>
+        </section>
+        <Divider />
+        <p className={cx(styles.green, styles.saving)}>
+          You will save ${calculateTotalDiscount(cartData)} on this order
+        </p>
+      </div>
+      <div className={styles.secureSection}>
         <span>
-          <s>$340</s> Free
+          <img width={25} src={shield} alt="shield" />
         </span>
-      </section>
-      <Divider />
-      <section>
-        <strong>Total Amount</strong>
-        <strong>${`${totalCartPrice(cartData)}`}</strong>
-      </section>
-      <p>You will save $134 on this order</p>
+        <span>
+          Safe and Secure Payments. Easy returns. <br /> 100% Authentic
+          products.
+        </span>
+      </div>
     </div>
   )
 }
