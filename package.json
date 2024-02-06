@@ -16,6 +16,9 @@
       "npm run check-types",
       "npm run check-lint"
     ],
+    "client/src/**/*.{ts,tsx,css,scss}": [
+      "npm run check-format-client"
+    ],
     "server/src/**/*.{js,jsx,css,scss}": [
       "npm run check-format-server"
     ]
