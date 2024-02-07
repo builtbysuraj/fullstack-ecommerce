@@ -1,6 +1,7 @@
 import axios from 'axios'
 
 import useServerStatus from '@/hooks/useServerStatus'
+import { useAppSelector } from '@/state/store'
 import { totalCartPrice } from '@/utils'
 import toast from 'react-hot-toast'
 import styles from './PlaceOrder.module.css'
@@ -12,11 +13,8 @@ declare global {
   }
 }
 
-type CartDataProps = {
-  cartData: []
-}
-
-export default function PlaceOrder({ cartData }: CartDataProps) {
+export default function PlaceOrder() {
+  const cartData = useAppSelector((state) => state.cart)
   const serverStatus = useServerStatus()
 
   const amount = totalCartPrice(cartData)

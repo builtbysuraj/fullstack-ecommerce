@@ -1,16 +1,15 @@
+import useFilter from '@/hooks/useFilters'
 import type { ProductType } from '@/types'
 import ProductCard from '../product-card/ProductCard'
 
-type Props = {
-  filteredData: ProductType[]
-}
+export default function Products() {
+  const { filteredData } = useFilter()
 
-export default function Products({ filteredData }: Props) {
   return (
-    <div>
-      {filteredData?.map((product) => (
+    <>
+      {filteredData?.map((product: ProductType) => (
         <ProductCard product={product} key={product.id} />
       ))}
-    </div>
+    </>
   )
 }

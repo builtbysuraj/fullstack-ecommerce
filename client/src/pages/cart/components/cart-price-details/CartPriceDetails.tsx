@@ -1,15 +1,13 @@
 import { Divider } from '@mui/material'
 
-import type { CartType } from '@/types'
+import { useAppSelector } from '@/state/store'
 import { calculateTotalDiscount, cx, totalCartPrice } from '@/utils'
 import shield from '../../../../assets/img/shield.svg'
 import styles from './CartPriceDetails.module.css'
 
-type CartDataProps = {
-  cartData: CartType[]
-}
+export default function CartPriceDetails() {
+  const cartData = useAppSelector((state) => state.cart)
 
-export default function CartPriceDetails({ cartData }: CartDataProps) {
   return (
     <div>
       <div className={styles.cartPrice}>

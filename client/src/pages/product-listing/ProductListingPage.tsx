@@ -6,16 +6,17 @@ import { SidebarFilters } from '@/layouts'
 import Products from './components/products/Products'
 
 function ProductListingPage() {
-  const { filteredData, isLoading } = useFilter()
+  const { isLoading } = useFilter()
 
   if (isLoading) return <Loader />
+
   return (
     <div style={{ display: 'flex', margin: '0.5rem', gap: '10px' }}>
       <aside style={{ flex: 1 }}>
         <SidebarFilters />
       </aside>
       <div style={{ flex: 4.6 }}>
-        <Products filteredData={filteredData} />
+        <Products />
       </div>
     </div>
   )
