@@ -41,9 +41,7 @@ function Header() {
             <button className={styles.headerLoginBtn}>Login</button>
           </Link>
         </div>
-        <div>
-          <Link to="/products">All products</Link>
-        </div>
+        <div>{/* <Link to="/products">All products</Link> */}</div>
         <div>
           <Link to="#">Become a Seller</Link>
         </div>

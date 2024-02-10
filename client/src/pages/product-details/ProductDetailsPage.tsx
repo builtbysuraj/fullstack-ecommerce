@@ -1,12 +1,11 @@
 import { Link, useParams } from 'react-router-dom'
-// @ts-expect-error - no type defination for RIG
-import ImageGallery from 'react-image-gallery'
 
 import Loader from '@/components/loader/Loader'
 import useHandleDispatch from '@/hooks/useHandleDispatch'
 import { useGetProductByIdQuery } from '@/state/services/productApi'
 import { useAppSelector } from '@/state/store'
-import { getOriginalAndThumbnailImg, isItemInCart } from '@/utils'
+import { isItemInCart } from '@/utils'
+import { Rating } from '@mui/material'
 import styles from './ProductDetailsPage.module.css'
 
 export default function ProductDetailsPage() {
@@ -17,19 +16,11 @@ export default function ProductDetailsPage() {
   const cartData = useAppSelector((state) => state.cart)
   if (isFetching || !data) return <Loader />
 
-  const Images = getOriginalAndThumbnailImg(data.images)
-
   return (
     <div className={styles.productDetailsContainer}>
       <div>
-        <div className={styles.imageGalleryWrapper}>
-          <ImageGallery
-            items={Images}
-            thumbnailPosition="left"
-            showPlayButton={false}
-            showFullscreenButton={false}
-            lazyLoad={true}
-          />
+        <div className={styles.productImage}>
+          <img src={data.thumbnail} alt={data.title} />
         </div>
         {isItemInCart(cartData, data) ? (
           <Link to="/cart">
@@ -48,6 +39,13 @@ export default function ProductDetailsPage() {
       </div>
       <div>
         <h3>{data?.title}</h3>
+        <p>{data.description}</p>
+        <p>{data.stock}</p>
+        <Rating name="read-only" value={data.rating} readOnly size="small" />
+        <p>{data.category}</p>
+        <p>{data.brand}</p>
+        <p>${data.price}</p>
+        <p>{data.discountPercentage}%</p>
       </div>
     </div>
   )

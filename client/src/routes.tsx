@@ -7,7 +7,6 @@ import {
 import App from './App'
 import {
   CartPage,
-  HomePage,
   LoginPage,
   PaymentSuccessPage,
   ProductDetailsPage,
@@ -18,8 +17,8 @@ import {
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route element={<App />}>
-      <Route path="/" element={<HomePage />} />
-      <Route path="/products" element={<ProductListingPage />} />
+      {/* <Route path="/" element={<HomePage />} /> */}
+      <Route path="/" element={<ProductListingPage />} />
       <Route path="/products/:id" element={<ProductDetailsPage />} />
       <Route path="/cart" element={<CartPage />} />
       <Route path="/login" element={<LoginPage />} />
