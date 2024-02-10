@@ -27,7 +27,7 @@ export default function From({
       </div>
       <div className={styles.right}>
         <form className={styles.form}>
-          <input type="text" placeholder="Enter Email/Username" />
+          <input type="text" placeholder="Username" />
           <input type="password" placeholder="Password" />
           <small className={styles.fromSmall}>
             By continuing, you agree to Flipkart's

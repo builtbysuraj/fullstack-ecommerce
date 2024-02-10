@@ -2,13 +2,13 @@ import useHandleDispatch from '@/hooks/useHandleDispatch'
 import type { CartType } from '@/types'
 import { cx } from '@/utils'
 import fa from '../../../../assets/img/fa.png'
-import styles from './CartItem.module.css'
+import styles from './CartItemCard.module.css'
 
 type CartItemProps = {
   product: CartType
 }
 
-export default function CartItem({ product }: CartItemProps) {
+export default function CartItemCard({ product }: CartItemProps) {
   const { handleRemoveFromCart, handleDecrementCartItem, handleAddToCart } =
     useHandleDispatch()
 
