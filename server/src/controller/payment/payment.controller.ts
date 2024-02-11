@@ -1,22 +1,7 @@
 import crypto from 'crypto'
-// import { Payment } from '../models/payment.model.js'
-import { ENV } from '../conf/conf'
-import { CLIENT_BASE_URL } from '../constants'
-import { razorpayInstance } from '../index'
-import { Payment } from '../models/payment.model'
-
-export const checkout = async (req, res) => {
-  const options = {
-    amount: Number(req.body.amount * 100),
-    currency: 'INR',
-  }
-  const order = await razorpayInstance.orders.create(options)
-
-  res.status(200).json({
-    success: true,
-    order,
-  })
-}
+import { ENV } from '../../conf/conf'
+import { CLIENT_BASE_URL } from '../../constants'
+import { Payment } from '../../model/payment.model'
 
 export const paymentVerification = async (req, res) => {
   const { razorpay_order_id, razorpay_payment_id, razorpay_signature } =
@@ -46,4 +31,8 @@ export const paymentVerification = async (req, res) => {
       success: false,
     })
   }
+}
+
+export const getKey = (req, res) => {
+  res.status(200).json({ key: ENV.RAZORPAY_API_KEY })
 }

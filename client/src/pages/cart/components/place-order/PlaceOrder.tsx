@@ -35,7 +35,7 @@ export default function PlaceOrder() {
       amount: order.amount,
       currency: 'INR',
       name: 'RazorPay',
-      description: 'Tutorial of RazorPay',
+      description: 'Secure payment through RazorPay',
       // image: 'https://avatars.githubusercontent.com/u/25058652?v=4',
       order_id: order.id,
       callback_url: 'http://localhost:5000/api/v1/paymentverification',

@@ -14,7 +14,7 @@ export default function PaymentSuccessPage() {
       if (referenceNum) {
         console.log(referenceNum)
         const response = await fetch(
-          `http://localhost:5000/verify-payment?paymentId=${referenceNum}`
+          `http://localhost:5000/api/v1/verify-payment?paymentId=${referenceNum}`
         )
         const data = await response.json()
         if (data.success) {
