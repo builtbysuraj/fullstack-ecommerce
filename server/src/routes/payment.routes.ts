@@ -2,7 +2,7 @@ import { Router } from 'express'
 import {
   checkout,
   paymentVerification,
-} from '../controllers/payment.controller.js'
+} from '../controllers/payment.controller'
 
 const router = Router()
 

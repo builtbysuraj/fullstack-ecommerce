@@ -1,8 +1,9 @@
 import crypto from 'crypto'
-import { Payment } from '../models/payment.model.js'
-import { ENV } from '../conf/conf.js'
-import { CLIENT_BASE_URL } from '../constants.js'
-import { razorpayInstance } from '../index.js'
+// import { Payment } from '../models/payment.model.js'
+import { ENV } from '../conf/conf'
+import { CLIENT_BASE_URL } from '../constants'
+import { razorpayInstance } from '../index'
+import { Payment } from '../models/payment.model'
 
 export const checkout = async (req, res) => {
   const options = {

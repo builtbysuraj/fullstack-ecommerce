@@ -1,7 +1,7 @@
 import cookieParser from 'cookie-parser'
 import cors from 'cors'
 import express from 'express'
-import { ENV } from './conf/conf.js'
+import { ENV } from './conf/conf'
 
 const app = express()
 
@@ -17,8 +17,8 @@ app.use(express.static('public'))
 app.use(cookieParser())
 
 // Routes
-import { Payment } from './models/payment.model.js'
-import paymentRoute from './routes/payment.routes.js'
+import { Payment } from './models/payment.model'
+import paymentRoute from './routes/payment.routes'
 
 app.get('/api/status', (req, res) => {
   res.json({ status: true, message: 'Server is running' })
