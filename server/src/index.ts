@@ -1,6 +1,6 @@
-import app from './app.js'
-import connectDB from './db/db.js'
 import Razorpay from 'razorpay'
+import app from './app'
+import connectDB from './db/db'
 
 const PORT = process.env.PORT || 5000
 
@@ -11,8 +11,6 @@ export const razorpayInstance = new Razorpay({
 
 connectDB()
   .then(() => {
-    app.listen(PORT, () =>
-      console.log(`\n ⚙️ Server is running at port : ${PORT}🎉`)
-    )
+    app.listen(PORT, () => console.log(`Server is running at port : ${PORT}`))
   })
   .catch((err) => console.log('MONGO db connection failed ! ', err))

@@ -19,7 +19,7 @@ export default function ServerStatusProvider({ children }: PropsWithChildren) {
   useEffect(() => {
     const checkServerStatus = async () => {
       try {
-        const { data } = await axios.get(`${ENV.SERVER_URL}/api/status`)
+        const { data } = await axios.get(`${ENV.SERVER_URL}/api/v1/status`)
 
         if (data.status) {
           setServerStatus(data)
