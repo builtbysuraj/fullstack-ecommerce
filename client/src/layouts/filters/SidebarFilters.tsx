@@ -1,51 +1,48 @@
-import { Box, Button, FormControl, Typography } from '@mui/material'
+import { memo } from 'react'
+import {
+  AppliedFilters,
+  BrandFilter,
+  CategoryFilter,
+  ClearFilter,
+  PriceSliderFilter,
+  RatingFilter,
+  SortProductsFilter,
+} from './components'
 
-import useHandleDispatch from '@/hooks/useHandleDispatch'
-import { useAppSelector } from '@/state/store'
-import PriceSliderFilter from './components/PriceSliderFilter'
-import SortProductsFilter from './components/SortProductsFilter'
-import RatingFilter from './components/RatingFilter'
-import CategoryFilter from './components/CategoryFilter'
-
-export default function SidebarFilters() {
-  const stateData = useAppSelector((state) => state.filter)
-  const {
-    handleFilterRating,
-    handleSort,
-    handlePriceRange,
-    handleClearFilter,
-  } = useHandleDispatch()
-
+function SidebarFilters() {
   return (
-    <>
-      <Typography component="h1" variant="h5" fontWeight="bold">
-        Filters
-      </Typography>
-      <Box display="flex" justifyContent="center" flexDirection="column">
-        {/* Clear Filters */}
-        <Button onClick={handleClearFilter} variant="outlined">
-          Clear Filters
-        </Button>
-        <br />
+    <div
+      style={{
+        background: 'white',
+        padding: '0.8rem',
+      }}
+      className="sidebar"
+    >
+      <h3>Filters</h3>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          flexDirection: 'column',
+        }}
+      >
+        <ClearFilter />
 
-        <PriceSliderFilter
-          stateData={stateData}
-          handlePriceRange={handlePriceRange}
-        />
-        <FormControl>
-          {/* Sort products */}
-          <SortProductsFilter stateData={stateData} handleSort={handleSort} />
+        <AppliedFilters />
 
-          {/* Ratings filter */}
-          <RatingFilter
-            stateData={stateData}
-            handleFilterRating={handleFilterRating}
-          />
-        </FormControl>
+        <PriceSliderFilter />
 
-        {/* Category Filters */}
+        <SortProductsFilter />
+
+        <RatingFilter />
+
         <CategoryFilter />
-      </Box>
-    </>
+
+        <BrandFilter />
+      </div>
+    </div>
   )
 }
+
+const MemoizedSidebarFilters = memo(SidebarFilters)
+export default MemoizedSidebarFilters

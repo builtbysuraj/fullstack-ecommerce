@@ -1,9 +1,43 @@
-/* eslint-disable react-refresh/only-export-components */
+type InputProps = {
+  type: string
+  name?: string
+  placeholder?: string
+  id?: string
+  value: string
+  onChange: React.ChangeEventHandler<HTMLInputElement> | undefined
+  checked?: boolean
+  label?: string
+  className?: string
+}
 
-// import { forwardRef } from 'react'
+function Input({
+  type,
+  name,
+  placeholder,
+  id,
+  value,
+  onChange,
+  checked,
+  label,
+  className = '',
+}: InputProps) {
+  return (
+    <>
+      <input
+        type={type}
+        name={name}
+        placeholder={placeholder}
+        id={id}
+        value={value}
+        onChange={onChange}
+        checked={checked}
+        className={className}
+      />
+      <label className={className} htmlFor={id}>
+        {label}
+      </label>
+    </>
+  )
+}
 
-// function Input({ label, type = 'text', className = '', ...props }, ref) {
-//   return <>{label && <label htmlFor="">{label}</label>}</>
-// }
-
-// export default forwardRef(Input)
+export default Input

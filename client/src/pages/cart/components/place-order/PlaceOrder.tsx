@@ -1,14 +1,25 @@
-import { totalCartPrice } from '@/utils'
 import axios from 'axios'
 
-type Props = {
-  cartData: []
+import useServerStatus from '@/hooks/useServerStatus'
+import { useAppSelector } from '@/state/store'
+import { totalCartPrice } from '@/utils'
+import toast from 'react-hot-toast'
+import styles from './PlaceOrder.module.css'
+
+declare global {
+  interface Window {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    Razorpay: any
+  }
 }
 
-export default function PlaceOrder({ cartData }: Props) {
+export default function PlaceOrder() {
+  const cartData = useAppSelector((state) => state.cart)
+  const serverStatus = useServerStatus()
+
   const amount = totalCartPrice(cartData)
 
-  const handleCheckout = async () => {
+  const performCheckout = async () => {
     const {
       data: { key },
     } = await axios.get('http://www.localhost:5000/api/v1/get-key')
@@ -24,7 +35,7 @@ export default function PlaceOrder({ cartData }: Props) {
       amount: order.amount,
       currency: 'INR',
       name: 'RazorPay',
-      description: 'Tutorial of RazorPay',
+      description: 'Secure payment through RazorPay',
       // image: 'https://avatars.githubusercontent.com/u/25058652?v=4',
       order_id: order.id,
       callback_url: 'http://localhost:5000/api/v1/paymentverification',
@@ -32,14 +43,27 @@ export default function PlaceOrder({ cartData }: Props) {
         address: 'Razorpay Corporate Office',
       },
     }
-    // @ts-expect-error Custom Razorpay script in index.html
+
     const razor = new window.Razorpay(options)
 
     razor.open()
   }
 
+  const handleCheckout = async () => {
+    if (!serverStatus?.status) {
+      // @ts-expect-error ...
+      return toast.error(serverStatus?.message)
+    }
+    if (serverStatus?.status)
+      toast.promise(performCheckout(), {
+        loading: 'Processing...',
+        success: 'Done!',
+        error: 'Server is not running',
+      })
+  }
+
   return (
-    <div className="">
+    <div className={styles.placeOrder}>
       <button onClick={handleCheckout}>PLACE ORDER</button>
     </div>
   )

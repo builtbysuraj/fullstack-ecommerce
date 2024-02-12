@@ -1,6 +1,7 @@
 import { Divider } from '@mui/material'
-import classNames from 'classnames/bind'
+import { memo } from 'react'
 import { Link } from 'react-router-dom'
+
 import gift from '@/assets/img/gift.svg'
 import paymentMethods from '@/assets/img/payment-method.svg'
 import question from '@/assets/img/question.svg'
@@ -8,9 +9,7 @@ import seller from '@/assets/img/seller.svg'
 import star from '@/assets/img/star.svg'
 import styles from './Footer.module.css'
 
-const cx = classNames.bind(styles)
-
-export default function Footer() {
+function Footer() {
   const about = [
     'Contact Us',
     'About Us',
@@ -41,9 +40,9 @@ export default function Footer() {
   ]
   const social = ['Facebook', 'Twitter', 'YouTube']
   return (
-    <footer className={cx('footer-container')}>
-      <div className={cx('top')}>
-        <div className={cx('left')}>
+    <footer className={styles.footerContainer}>
+      <div className={styles.top}>
+        <div className={styles.left}>
           <div>
             <ul>
               <p>ABOUT</p>
@@ -89,7 +88,7 @@ export default function Footer() {
             </ul>
           </div>
         </div>
-        <div className={cx('right')}>
+        <div className={styles.right}>
           <div>
             <p>Mail Us:</p>
             <br />
@@ -121,7 +120,7 @@ export default function Footer() {
         </div>
       </div>
       <Divider sx={{ bgcolor: 'white', p: 0 }} />
-      <div className={cx('bottom')}>
+      <div className={styles.bottom}>
         <div>
           <img src={seller} alt="Become a Seller" />
           <Link to="#">Become a Seller</Link>
@@ -148,3 +147,6 @@ export default function Footer() {
     </footer>
   )
 }
+
+const MemoizedFooter = memo(Footer)
+export default MemoizedFooter

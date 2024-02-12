@@ -1,42 +1,31 @@
-import { Checkbox, FormControlLabel, FormGroup } from '@mui/material'
+import { memo } from 'react'
 
-const categories = [
-  'smartphones',
-  'laptops',
-  'fragrances',
-  'skincare',
-  'groceries',
-  'home-decoration',
-  'furniture',
-  'tops',
-  'womens-dresses',
-  'womens-shoes',
-  'mens-shirts',
-  'mens-shoes',
-  'mens-watches',
-  'womens-watches',
-  'womens-bags',
-  'womens-jewellery',
-  'sunglasses',
-  'automotive',
-  'motorcycle',
-  'lighting',
-]
+import Input from '@/components/ui/Input'
+import { CATEGORIES } from '@/constants/filterConstants'
+import useGetParams from '@/hooks/useGetParams'
+import useHandleDispatch from '@/hooks/useHandleDispatch'
 
-export default function CategoryFilter() {
+function CategoryFilter() {
+  const { handleCategoryFilter } = useHandleDispatch()
+  const { category: categoryParam } = useGetParams()
   return (
-    <>
-      {/* @ts-expect-error  -  mui component issue */}
-      <FormGroup onChange={(e) => console.log(e.target.value)}>
-        {categories.map((category, index) => (
-          <FormControlLabel
-            value={category}
-            key={index}
-            control={<Checkbox />}
+    <section>
+      <h4>Categories</h4>
+      {Object.keys(CATEGORIES).map((category) => (
+        <div key={category}>
+          <Input
+            type="radio"
+            value={CATEGORIES[category]}
             label={category}
+            id={category}
+            onChange={(e) => handleCategoryFilter(e.target.value)}
+            checked={categoryParam === CATEGORIES[category]}
           />
-        ))}
-      </FormGroup>
-    </>
+        </div>
+      ))}
+    </section>
   )
 }
+
+const MemoizedCategoryFilter = memo(CategoryFilter)
+export default MemoizedCategoryFilter

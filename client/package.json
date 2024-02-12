@@ -8,20 +8,23 @@
     "build": "vite build",
     "preview": "vite preview",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "check-lint": "eslint . --ext ts,tsx",
+    "check-types": "tsc --pretty --noEmit",
     "test": "vitest",
-    "format": "prettier --write ./src"
+    "format": "prettier --write ./src",
+    "check-format": "prettier --check ./src"
   },
   "dependencies": {
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
     "@mui/material": "^5.15.2",
     "@reduxjs/toolkit": "^2.0.1",
-    "@tanstack/react-query": "^5.17.10",
     "axios": "^1.6.4",
-    "classnames": "^2.5.1",
     "lodash.debounce": "^4.0.8",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hot-toast": "^2.4.1",
+    "react-image-gallery": "^1.3.0",
     "react-redux": "^9.0.4",
     "react-router-dom": "^6.21.0"
   },

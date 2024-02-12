@@ -1,42 +1,43 @@
 import { SORT_TYPE } from '@/constants/filterConstants'
 import { useGetAllProductsQuery } from '@/state/services/productApi'
-import { useAppSelector } from '@/state/store'
+import type { ProductType } from '@/types'
+import useGetParams from './useGetParams'
 
 export default function useFilter() {
-  const stateData = useAppSelector((state) => state.filter)
-  const { data } = useGetAllProductsQuery()
-  const filteredData = data?.products
-    ?.filter((item) => {
+  const { data, isLoading } = useGetAllProductsQuery(null)
+
+  const { q, category, brand, rating, price, sort } = useGetParams()
+  const products = data?.products
+
+  const filteredData = products
+    ?.filter((item: ProductType) => {
       // Price filter
-      if (
-        stateData.priceRange &&
-        !(
-          item.price >= stateData.priceRange[0] &&
-          item.price <= stateData.priceRange[1]
-        )
-      )
+      if (price && !(item.price >= price[0] && item.price <= price[1]))
         return false
 
       // Rating filter
-      if (
-        stateData.stateRating &&
-        !(item.rating >= Number(stateData.stateRating))
-      )
-        return false
+      if (rating && !(item.rating >= Number(rating))) return false
 
       // Search filter
       if (
-        stateData.searchQuery &&
-        !item.title.toLowerCase().includes(stateData.searchQuery) &&
-        !item.category.toLowerCase().includes(stateData.searchQuery) &&
-        !item.brand.toLowerCase().includes(stateData.searchQuery)
+        q &&
+        !item.title.toLowerCase().includes(q.toLowerCase()) &&
+        !item.category.toLowerCase().includes(q.toLowerCase()) &&
+        !item.brand.toLowerCase().includes(q.toLowerCase())
       )
         return false
+
+      // Category filter
+      if (category && !(item.category === category)) return false
+
+      // Brand filter
+      if (brand && !(item.brand === brand)) return false
+
       // Add more filters as needed
       return true
     })
-    .sort((a, b) => {
-      switch (stateData.sort) {
+    .sort((a: ProductType, b: ProductType) => {
+      switch (sort) {
         case SORT_TYPE.PRICE_HIGH_TO_LOW:
           return b.price - a.price
         case SORT_TYPE.PRICE_LOW_TO_HIGH:
@@ -49,5 +50,5 @@ export default function useFilter() {
       }
     })
 
-  return { filteredData }
+  return { filteredData, isLoading }
 }

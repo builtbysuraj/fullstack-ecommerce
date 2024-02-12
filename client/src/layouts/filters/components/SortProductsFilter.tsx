@@ -1,34 +1,36 @@
-import { FormControlLabel, Radio, RadioGroup, Typography } from '@mui/material'
-import { SORT_TYPE } from '@/constants/filterConstants'
+import { memo } from 'react'
 
-export default function SortProductsFilter({ stateData, handleSort }) {
+import Input from '@/components/ui/Input'
+import { SORT_ITEMS } from '@/constants/filterConstants'
+import useGetParams from '@/hooks/useGetParams'
+import useHandleDispatch from '@/hooks/useHandleDispatch'
+
+function SortProductsFilter() {
+  const { sort } = useGetParams()
+  const { handleSort } = useHandleDispatch()
   return (
-    <>
-      <Typography component="label" fontWeight="bold" id="sort">
-        Sort
-      </Typography>
-      <RadioGroup
-        aria-labelledby="sort"
-        name="sort product"
-        value={stateData.sort}
-        onChange={(e) => handleSort(e.target.value)}
-      >
-        <FormControlLabel
-          value={SORT_TYPE.PRICE_HIGH_TO_LOW}
-          control={<Radio />}
-          label="Sort by high to low price"
-        />
-        <FormControlLabel
-          value={SORT_TYPE.PRICE_LOW_TO_HIGH}
-          control={<Radio />}
-          label="Sort by low to high price"
-        />
-        <FormControlLabel
-          value={SORT_TYPE.RATING_HIGH_TO_LOW}
-          control={<Radio />}
-          label="Rating High To Low"
-        />
-      </RadioGroup>
-    </>
+    <section>
+      <h4>Sort</h4>
+      <div>
+        {SORT_ITEMS.map((item) => (
+          <div key={item.value}>
+            <Input
+              type="radio"
+              id={item.label}
+              checked={sort === item.value}
+              onChange={(event) => handleSort(event.target.value)}
+              name="sort"
+              label={item.label}
+              value={item.value}
+            />
+            <br />
+          </div>
+        ))}
+        <hr />
+      </div>
+    </section>
   )
 }
+
+const MemoizedSortProductsFilter = memo(SortProductsFilter)
+export default MemoizedSortProductsFilter

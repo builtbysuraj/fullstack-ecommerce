@@ -1,3 +1,10 @@
+.home-container {
+  height: 100vh;
+  max-width: 100vw;
+  outline: 1px solid red;
+  margin: 1rem;
+}
+
 .home-btn {
   border: 0;
   padding: 0.5rem 1rem;

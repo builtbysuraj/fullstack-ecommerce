@@ -1,5 +1,5 @@
-import { CartType } from '@/types'
-import { PayloadAction, createSlice, nanoid } from '@reduxjs/toolkit'
+import type { CartType } from '@/types'
+import { createSlice, nanoid } from '@reduxjs/toolkit'
 
 const initialState = JSON.parse(localStorage.getItem('cart') || '[]')
 
@@ -7,7 +7,7 @@ const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    addToCart(state, action: PayloadAction<CartType>) {
+    addToCart(state, action) {
       const item = state.find((item: CartType) => item.id === action.payload.id)
       if (item) {
         item.quantity += 1
@@ -29,7 +29,7 @@ const cartSlice = createSlice({
       }
       localStorage.setItem('cart', JSON.stringify(state))
     },
-    removeFromCart(state, action: PayloadAction<string>) {
+    removeFromCart(state, action) {
       const newState = state.filter(
         (item: CartType) => item.cartItemId !== action.payload
       )
@@ -38,7 +38,7 @@ const cartSlice = createSlice({
     },
     clear() {
       return []
-    }
+    },
   },
 })
 

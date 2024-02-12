@@ -1,22 +1,33 @@
 import { createRoot } from 'react-dom/client'
+import { Toaster } from 'react-hot-toast'
 import { Provider } from 'react-redux'
 import { RouterProvider } from 'react-router-dom'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
+// Styles
+import 'react-image-gallery/styles/css/image-gallery.css'
+import './assets/css/global.css'
 import './assets/css/reset.css'
+
+// Routes
 import router from './routes'
+
+// Store
 import store from './state/store'
 
-if (process.env.NODE_ENV !== 'development') {
+// Context
+import ServerStatusProvider from './context/ServerStatusProvider'
+
+if (process.env.NODE_ENV === 'production') {
   console.log = () => {}
+  console.warn = () => {}
+  console.error = () => {}
 }
 
-const queryClient = new QueryClient()
-
-createRoot(document.querySelector('#root') as HTMLElement).render(
+createRoot(document.querySelector('#root')!).render(
   <Provider store={store}>
-    <QueryClientProvider client={queryClient}>
+    <ServerStatusProvider>
+      <Toaster />
       <RouterProvider router={router} />
-    </QueryClientProvider>
+    </ServerStatusProvider>
   </Provider>
 )

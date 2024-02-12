@@ -1,39 +1,33 @@
-import { FormControlLabel, Radio, RadioGroup, Typography } from '@mui/material'
-import { RATING_TYPE } from '@/constants/filterConstants'
+import { memo } from 'react'
 
-export default function RatingFilter({ stateData, handleFilterRating }) {
+import Input from '@/components/ui/Input'
+import { RATING_ITEMS } from '@/constants/filterConstants'
+import useGetParams from '@/hooks/useGetParams'
+import useHandleDispatch from '@/hooks/useHandleDispatch'
+
+function RatingFilter() {
+  const { rating } = useGetParams()
+  const { handleFilterRating } = useHandleDispatch()
   return (
-    <>
-      <Typography component="label" fontWeight="bold" id="rating">
-        Customer Review
-      </Typography>
-      <RadioGroup
-        aria-labelledby="rating"
-        name="rating filters"
-        value={stateData.stateRating}
-        onChange={(e) => handleFilterRating(e.target.value)}
-      >
-        <FormControlLabel
-          value={RATING_TYPE.FOUR_AND_UP}
-          control={<Radio />}
-          label="4 & Up"
-        />
-        <FormControlLabel
-          value={RATING_TYPE.THREE_AND_UP}
-          control={<Radio />}
-          label="3 & Up"
-        />
-        <FormControlLabel
-          value={RATING_TYPE.TWO_AND_UP}
-          control={<Radio />}
-          label="2 & Up"
-        />
-        <FormControlLabel
-          value={RATING_TYPE.ONE_AND_UP}
-          control={<Radio />}
-          label="1 & Up"
-        />
-      </RadioGroup>
-    </>
+    <section>
+      <h4>Customer Review</h4>
+      {RATING_ITEMS.map((item) => (
+        <div key={item.value}>
+          <Input
+            type="radio"
+            id={item.label}
+            checked={rating === item.value}
+            onChange={(event) => handleFilterRating(event.target.value)}
+            name="rating"
+            label={item.label}
+            value={item.value}
+          />
+        </div>
+      ))}
+      <hr />
+    </section>
   )
 }
+
+const MemoizedRatingFilter = memo(RatingFilter)
+export default MemoizedRatingFilter
