@@ -6,7 +6,16 @@ echo '
 '
 
 # Check tsconfig standards
-npm run check-types ||
+npm run check-types-client ||
+(
+    echo '
+    TypeScript Check Failed. ❌ 
+    Make the required changes listed above, add changes and try to commit again.
+    '
+    false;
+)
+
+npm run check-types-server ||
 (
     echo '
     TypeScript Check Failed. ❌ 
@@ -17,7 +26,7 @@ npm run check-types ||
 
 
 # Check ESLint Standards
-npm run check-lint ||
+npm run check-lint-client ||
 (
     echo ' 
     ESLint Check Failed. ❌
