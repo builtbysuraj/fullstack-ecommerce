@@ -1,25 +1,32 @@
 {
   "devDependencies": {
+    "concurrently": "^8.2.2",
     "husky": "^9.0.10",
     "lint-staged": "^15.2.2"
   },
   "scripts": {
     "prepare": "husky",
+    "dev:server": "npm run dev --prefix ./server",
+    "dev:client": "npm run dev --prefix ./client",
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
     "check-format-client": "cd client && npm run check-format",
+    "check-lint-client": "cd client && npm run check-lint",
+    "check-types-client": "cd client && npm run check-types",
     "check-format-server": "cd server && npm run check-format",
-    "check-lint": "cd client && npm run check-lint",
-    "check-types": "cd client && npm run check-types"
+    "check-types-server": "cd server && npm run check-types"
   },
   "lint-staged": {
     "client/src/**/*.{ts,tsx}": [
-      "npm run check-format-client",
-      "npm run check-types",
-      "npm run check-lint"
+      "npm run check-types-client",
+      "npm run check-lint-client"
     ],
-    "client/src/**/*.{ts,tsx,css,scss}": [
+    "client/src/**/*.{ts,js,tsx,jsx,css,scss,md,json}": [
       "npm run check-format-client"
     ],
-    "server/src/**/*.{js,jsx,css,scss}": [
+    "server/src/**/*.{ts}": [
+      "npm run check-types-server"
+    ],
+    "server/src/**/*.{ts,js,md,json}": [
       "npm run check-format-server"
     ]
   }
