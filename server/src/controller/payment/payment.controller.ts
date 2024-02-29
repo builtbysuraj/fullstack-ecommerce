@@ -6,6 +6,7 @@ import { Payment } from '../../model/payment.model'
 export const paymentVerification = async (req, res) => {
   const { razorpay_order_id, razorpay_payment_id, razorpay_signature } =
     req.body
+  const userId = req.user.id
 
   const body = razorpay_order_id + '|' + razorpay_payment_id
 
@@ -21,6 +22,7 @@ export const paymentVerification = async (req, res) => {
       razorpay_order_id,
       razorpay_payment_id,
       razorpay_signature,
+      user: userId,
     })
 
     res.redirect(

@@ -34,10 +34,5 @@ export default (args: ViteConfigInput) => {
         generateScopedName,
       },
     },
-    server: {
-      proxy: {
-        '/api': 'http://localhost:5000',
-      },
-    },
   })
 }

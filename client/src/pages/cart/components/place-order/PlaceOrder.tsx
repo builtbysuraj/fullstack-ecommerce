@@ -13,6 +13,8 @@ declare global {
   }
 }
 
+axios.defaults.withCredentials = true
+
 export default function PlaceOrder() {
   const cartData = useAppSelector((state) => state.cart)
   const serverStatus = useServerStatus()
@@ -36,7 +38,7 @@ export default function PlaceOrder() {
       currency: 'INR',
       name: 'RazorPay',
       description: 'Secure payment through RazorPay',
-      // image: 'https://avatars.githubusercontent.com/u/25058652?v=4',
+      // image: '',
       order_id: order.id,
       callback_url: 'http://localhost:5000/api/v1/paymentverification',
       notes: {
