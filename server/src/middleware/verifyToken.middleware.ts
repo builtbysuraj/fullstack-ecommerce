@@ -1,4 +1,5 @@
 import jwt from 'jsonwebtoken'
+import { ENV } from '../conf/conf'
 
 export const verifyToken = (req, res, next) => {
   const token = req.cookies.token
@@ -8,7 +9,7 @@ export const verifyToken = (req, res, next) => {
   }
 
   try {
-    const verified = jwt.verify(token, 'secret')
+    const verified = jwt.verify(token, ENV.JWT_SECRET)
     req.user = verified
     next()
   } catch (err) {

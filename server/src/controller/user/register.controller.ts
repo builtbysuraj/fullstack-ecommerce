@@ -1,9 +1,12 @@
 import bcryptjs from 'bcryptjs'
 import jwt from 'jsonwebtoken'
+import { ENV } from '../../conf/conf'
+import connectDB from '../../db/db'
 import { User } from '../../model/user.model'
 
 export const registerUser = async (req, res) => {
   try {
+    await connectDB()
     const { username, password } = req.body
     // console.log(name, pass)
 
@@ -27,11 +30,16 @@ export const registerUser = async (req, res) => {
     }
 
     // Create token with JWT
-    const token = await jwt.sign(tokenData, 'secret', {
+    const token = await jwt.sign(tokenData, ENV.JWT_SECRET, {
       expiresIn: '1d',
     })
 
-    res.cookie('token', token)
+    res.cookie('token', token, {
+      secure: true,
+      sameSite: 'none',
+      maxAge: 24 * 60 * 60 * 1000,
+    })
+
     return res.json({ message: 'User registered successfully', token })
   } catch (error) {
     console.log(error)

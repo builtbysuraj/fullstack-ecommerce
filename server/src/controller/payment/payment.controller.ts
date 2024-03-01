@@ -1,9 +1,12 @@
 import crypto from 'crypto'
 import { ENV } from '../../conf/conf'
 import { CLIENT_BASE_URL } from '../../constants'
+import connectDB from '../../db/db'
 import { Payment } from '../../model/payment.model'
 
 export const paymentVerification = async (req, res) => {
+  await connectDB()
+
   const { razorpay_order_id, razorpay_payment_id, razorpay_signature } =
     req.body
   const userId = req.user.id

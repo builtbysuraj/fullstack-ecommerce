@@ -3,7 +3,6 @@
     "target": "ESNext",
     "module": "CommonJS",
     "moduleResolution": "Node",
-    "rootDir": "src",
     "outDir": "build",
     "lib": ["ESNext"],
     "strict": false,
@@ -16,6 +15,6 @@
     "allowSyntheticDefaultImports": true,
     "isolatedModules": true
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "api/**/*"],
   "exclude": ["node_modules"]
 }

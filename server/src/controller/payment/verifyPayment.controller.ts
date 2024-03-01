@@ -1,6 +1,9 @@
+import connectDB from '../../db/db'
 import { Payment } from '../../model/payment.model'
 
 export const verifyPayment = async (req, res) => {
+  await connectDB()
+
   const paymentId = req.query.paymentId
   console.log(paymentId)
   try {
