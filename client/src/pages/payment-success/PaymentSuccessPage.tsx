@@ -1,3 +1,4 @@
+import { ENV } from '@/conf'
 import { clear } from '@/state/slices/cartSlice'
 import { useAppDispatch } from '@/state/store'
 import { useEffect } from 'react'
@@ -14,7 +15,7 @@ export default function PaymentSuccessPage() {
       if (referenceNum) {
         console.log(referenceNum)
         const response = await fetch(
-          `http://localhost:5000/api/v1/verify-payment?paymentId=${referenceNum}`
+          `${ENV.SERVER_URL}/verify-payment?paymentId=${referenceNum}`
         )
         const data = await response.json()
         if (data.success) {

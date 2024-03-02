@@ -5,6 +5,7 @@ import { useAppSelector } from '@/state/store'
 import { totalCartPrice } from '@/utils'
 import toast from 'react-hot-toast'
 import styles from './PlaceOrder.module.css'
+import { ENV } from '@/conf'
 
 declare global {
   interface Window {
@@ -24,11 +25,11 @@ export default function PlaceOrder() {
   const performCheckout = async () => {
     const {
       data: { key },
-    } = await axios.get('http://www.localhost:5000/api/v1/get-key')
+    } = await axios.get(`${ENV.SERVER_URL}/get-key`)
 
     const {
       data: { order },
-    } = await axios.post('http://localhost:5000/api/v1/checkout', {
+    } = await axios.post(`${ENV.SERVER_URL}/checkout`, {
       amount,
     })
 
@@ -40,7 +41,7 @@ export default function PlaceOrder() {
       description: 'Secure payment through RazorPay',
       // image: '',
       order_id: order.id,
-      callback_url: 'http://localhost:5000/api/v1/paymentverification',
+      callback_url: `${ENV.SERVER_URL}/paymentverification`,
       notes: {
         address: 'Razorpay Corporate Office',
       },

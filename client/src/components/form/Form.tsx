@@ -28,7 +28,7 @@ export default function From({
 
     // Extracting form values through 'name' property, in 'data'
     const data = Object.fromEntries(formData)
-    const res = await axios.post(`${ENV.SERVER_URL}/${endpoint}`, data)
+    const res = await axios.post(`${ENV.SERVER_URL}${endpoint}`, data)
     console.log(res.data)
 
     form.reset()
