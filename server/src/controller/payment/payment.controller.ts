@@ -1,6 +1,5 @@
 import crypto from 'crypto'
 import { ENV } from '../../conf/conf'
-import { CLIENT_BASE_URL } from '../../constants'
 import connectDB from '../../db/db'
 import { Payment } from '../../model/payment.model'
 
@@ -29,7 +28,7 @@ export const paymentVerification = async (req, res) => {
     })
 
     res.redirect(
-      `${CLIENT_BASE_URL}/payment-success?reference=${razorpay_payment_id}`
+      `${ENV.CLIENT_URL}/payment-success?reference=${razorpay_payment_id}`
     )
   } else {
     res.status(400).json({
