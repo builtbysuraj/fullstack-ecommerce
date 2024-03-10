@@ -1,11 +1,11 @@
 import axios from 'axios'
 
-import useServerStatus from '@/hooks/useServerStatus'
+// import useServerStatus from '@/hooks/useServerStatus'
+import { ENV } from '@/conf'
 import { useAppSelector } from '@/state/store'
 import { totalCartPrice } from '@/utils'
 import toast from 'react-hot-toast'
 import styles from './PlaceOrder.module.css'
-import { ENV } from '@/conf'
 
 declare global {
   interface Window {
@@ -18,7 +18,7 @@ axios.defaults.withCredentials = true
 
 export default function PlaceOrder() {
   const cartData = useAppSelector((state) => state.cart)
-  const serverStatus = useServerStatus()
+  // const serverStatus = useServerStatus()
 
   const amount = totalCartPrice(cartData)
 
@@ -53,16 +53,16 @@ export default function PlaceOrder() {
   }
 
   const handleCheckout = async () => {
-    if (!serverStatus?.status) {
-      // @ts-expect-error ...
-      return toast.error(serverStatus?.message)
-    }
-    if (serverStatus?.status)
-      toast.promise(performCheckout(), {
-        loading: 'Processing...',
-        success: 'Done!',
-        error: 'Server is not running',
-      })
+    // if (!serverStatus?.status) {
+    //   // @ts-expect-error ...
+    //   return toast.error(serverStatus?.message)
+    // }
+    // if (serverStatus?.status)
+    toast.promise(performCheckout(), {
+      loading: 'Processing...',
+      success: 'Done!',
+      error: 'Server is not running',
+    })
   }
 
   return (
