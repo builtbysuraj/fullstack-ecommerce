@@ -15,7 +15,7 @@ import router from './routes'
 import store from './state/store'
 
 // Context
-import ServerStatusProvider from './context/ServerStatusProvider'
+// import ServerStatusProvider from './context/ServerStatusProvider'
 
 if (process.env.NODE_ENV === 'production') {
   console.log = () => {}
@@ -25,9 +25,9 @@ if (process.env.NODE_ENV === 'production') {
 
 createRoot(document.querySelector('#root')!).render(
   <Provider store={store}>
-    <ServerStatusProvider>
-      <Toaster />
-      <RouterProvider router={router} />
-    </ServerStatusProvider>
+    {/* <ServerStatusProvider> */}
+    <Toaster />
+    <RouterProvider router={router} />
+    {/* </ServerStatusProvider> */}
   </Provider>
 )
