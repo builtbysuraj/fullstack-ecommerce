@@ -38,5 +38,5 @@ export const paymentVerification = async (req, res) => {
 }
 
 export const getKey = (req, res) => {
-  res.status(200).json({ key: ENV.RAZORPAY_API_KEY })
+  return res.status(200).json({ key: ENV.RAZORPAY_API_KEY })
 }

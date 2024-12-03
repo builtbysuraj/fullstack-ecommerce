@@ -8,7 +8,6 @@ export const registerUser = async (req, res) => {
   try {
     await connectDB()
     const { username, password } = req.body
-    // console.log(name, pass)
 
     const user = await User.findOne({ username })
     if (user) {
@@ -36,9 +35,10 @@ export const registerUser = async (req, res) => {
 
     res.cookie('token', token, {
       httpOnly: true,
+      // secure: process.env.NODE_ENV === 'production',
       secure: true,
       sameSite: 'none',
-      maxAge: 24 * 60 * 60 * 1000,
+      maxAge: 24 * 60 * 60 * 1000, // 1 day
     })
 
     return res.json({ message: 'User registered successfully', token })
